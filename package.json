@@ -1,26 +1,32 @@
 {
   "name": "gotuda",
-  "version": "0.0.0",
   "private": true,
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore",
-    "format": "prettier --write src/"
+    "lint": "eslint ./ --fix"
   },
   "dependencies": {
     "vue": "^3.3.4",
     "vue-router": "^4.2.4"
   },
   "devDependencies": {
-    "@qimijoy/browserslist-configs": "^1.0.5",
+    "@babel/core": "^7.22.15",
+    "@babel/eslint-parser": "^7.22.15",
+    "@babel/preset-env": "^7.22.15",
+    "@eslint/js": "^8.48.0",
+    "@qimijoy/browserslist-config": "^1.0.6",
     "@rushstack/eslint-patch": "^1.3.3",
     "@vitejs/plugin-vue": "^4.3.4",
     "@vue/eslint-config-prettier": "^8.0.0",
-    "eslint": "^8.48.0",
+    "corejs": "^1.0.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-prettier": "^5.0.0",
     "eslint-plugin-vue": "^9.17.0",
-    "prettier": "^3.0.3",
-    "vite": "^4.4.9"
+    "globals": "^13.21.0",
+    "prettier": "3.0.3",
+    "vite": "^4.4.9",
+    "vue-eslint-parser": "^9.3.1"
   }
 }
