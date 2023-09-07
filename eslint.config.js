@@ -24,7 +24,7 @@ module.exports = [
 		},
 	},
 	{
-		files: ['**/*.js', '**/*.cjs'],
+		files: ['**/*.js'],
 		ignores: ['**/dist/**/*'],
 		languageOptions: {
 			ecmaVersion: 'latest',
