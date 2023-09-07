@@ -1,23 +1,6 @@
+const primaryConfig = require('@qimijoy/prettier-config/configs/primary');
+
 module.exports = {
-	printWidth: 120,
-	tabWidth: 2,
-	useTabs: true,
-	semi: true,
-	singleQuote: true,
-	quoteProps: 'as-needed',
-	jsxSingleQuote: false,
-	trailingComma: 'all',
-	bracketSpacing: true,
-	bracketSameLine: false,
-	arrowParens: 'always',
-	rangeStart: 0,
-	rangeEnd: Infinity,
-	requirePragma: false,
-	insertPragma: false,
-	proseWrap: 'preserve',
-	htmlWhitespaceSensitivity: 'css',
-	vueIndentScriptAndStyle: false,
-	endOfLine: 'auto',
-	embeddedLanguageFormatting: 'auto',
-	singleAttributePerLine: false,
+	...primaryConfig,
+	semi: false,
 };
