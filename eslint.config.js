@@ -53,6 +53,7 @@ module.exports = [
 		plugins: { vue },
 		rules: {
 			...vue.configs.essential.rules,
+			'vue/no-multiple-template-root': 'off',
 		},
 	},
 	// Prettier options (must be last!)
