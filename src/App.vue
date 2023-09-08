@@ -1,9 +1,16 @@
 <template>
-	<GoHeader></GoHeader>
 	<RouterView />
 </template>
 
 <script setup>
 import { RouterView } from 'vue-router';
-import GoHeader from './components/GoHeader/GoHeader.vue';
 </script>
+
+<style class="scope">
+.container {
+	max-width: 1024px;
+	height: 100%;
+	margin: auto;
+	padding: 30px;
+}
+</style>
