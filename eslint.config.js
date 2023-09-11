@@ -9,6 +9,8 @@ const prettierConfig = require('eslint-config-prettier');
 const vueParser = require('vue-eslint-parser');
 const vue = require('eslint-plugin-vue');
 
+const myESlintConfig = require('@qimijoy/eslint-config/configs/primary');
+
 module.exports = [
 	{
 		linterOptions: {
@@ -38,6 +40,7 @@ module.exports = [
 		},
 		rules: {
 			...js.configs.recommended.rules,
+			...myESlintConfig.rules,
 		},
 	},
 	// VUE
