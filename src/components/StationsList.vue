@@ -1,10 +1,10 @@
 <template>
 	<div class="stations-list">
-		<GoButton label="Кнопка" />
+		<GoButton label="Го туда" @click="rollStation(stations)" />
 
-		<div class="random-station">
+		<div v-if="randomStation" class="random-station">
 			<span>Ты сегодня покатишь на станцию </span>
-			<span class="random-station__choice">{{ randomStation.name }}</span>
+			<span class="random-station__choice">{{ randomStation }}</span>
 		</div>
 		<ul>
 			<li v-for="line of linesList.lines" :key="line.id" class="line">
@@ -24,12 +24,14 @@
 </template>
 
 <script setup>
-import { onMounted, reactive, computed } from 'vue';
+import { onMounted, ref, reactive, computed } from 'vue';
 import GoButton from '@/components/GoButton.vue';
 
 let linesList = reactive({
 	lines: [],
 });
+
+let randomStation = ref('');
 
 onMounted(async () => {
 	fetch('https://api.hh.ru/metro/1')
@@ -55,17 +57,12 @@ const stations = computed(() => {
 	);
 });
 
-const randomStation = computed(() => {
-	const ids = stations.value.map((station) => station.id);
-	return stations.value.find((station) => station.id === getRandomElementFromArray(ids)) || 'test';
-});
-
-function getRandomElementFromArray(array) {
+function rollStation(array) {
 	if (array.length === 0) {
 		return null;
 	} else {
 		const randomNumber = Math.floor(Math.random() * (array.length + 1));
-		return array[randomNumber];
+		randomStation.value = array[randomNumber].name;
 	}
 }
 </script>
