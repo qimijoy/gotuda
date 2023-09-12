@@ -1,5 +1,7 @@
 <template>
 	<div class="stations-list">
+		<GoButton label="Кнопка" />
+
 		<div class="random-station">
 			<span>Ты сегодня покатишь на станцию </span>
 			<span class="random-station__choice">{{ randomStation.name }}</span>
@@ -23,6 +25,7 @@
 
 <script setup>
 import { onMounted, reactive, computed } from 'vue';
+import GoButton from '@/components/GoButton.vue';
 
 let linesList = reactive({
 	lines: [],
