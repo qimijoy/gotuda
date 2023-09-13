@@ -30,7 +30,7 @@ const props = defineProps({
 </script>
 
 <style scoped lang="less">
-@import '@/styles/common/colors';
+@import '@/styles/colors';
 
 .button {
 	padding: 0 20px;
