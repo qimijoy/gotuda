@@ -26,6 +26,7 @@
 <script setup>
 import { onMounted, ref, reactive, computed } from 'vue';
 import GoButton from '@/components/GoButton.vue';
+import { randomNumber } from '@/utils/functions';
 
 let linesList = reactive({
 	lines: [],
@@ -61,8 +62,7 @@ function rollStation(array) {
 	if (array.length === 0) {
 		return null;
 	} else {
-		const randomNumber = Math.floor(Math.random() * (array.length + 1));
-		randomStation.value = array[randomNumber].name;
+		randomStation.value = array[randomNumber(0, array.length - 1)].name;
 	}
 }
 </script>

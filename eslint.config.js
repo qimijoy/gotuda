@@ -62,7 +62,6 @@ module.exports = [
 	// Prettier options (must be last!)
 	{
 		files: ['**/*.js'],
-		ignores: ['**/reports/**'],
 		plugins: { prettier },
 		rules: {
 			...prettierConfig.rules,

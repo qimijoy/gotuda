@@ -1,8 +1,10 @@
 <template>
 	<aside class="sidebar">
-		<router-link class="sidebar__link" v-for="link of links" :key="link.name" :to="link.href">
-			{{ link.name }}
-		</router-link>
+		<div class="sidebar__links">
+			<router-link class="sidebar__link" v-for="link of links" :key="link.name" :to="link.href">
+				{{ link.name }}
+			</router-link>
+		</div>
 	</aside>
 </template>
 
@@ -20,18 +22,32 @@ const links = ref([
 @import '@/styles/sizes';
 
 .sidebar {
-	position: fixed;
-	left: 0;
-	top: @header-height;
+	display: flex;
+	flex-direction: row;
+
 	width: @sidebar-width;
-	height: 100%;
 
 	background-color: @white;
-	padding: 20px;
+	margin-right: 20px;
 	transition: 0.2s;
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.07);
-	//transform: translateX(-@sidebar-width);
-	transform: translateX(0);
+
+	&__toggle {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+
+		width: 15px;
+		height: 100%;
+		background: @primary-hover;
+		color: @white;
+		cursor: pointer;
+	}
+
+	&__links {
+		padding: 20px;
+		flex-grow: 1;
+	}
 
 	&__link {
 		display: block;

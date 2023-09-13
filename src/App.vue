@@ -1,9 +1,9 @@
 <template>
-	<GoHeader class="container__header" />
 	<div class="container">
-		<GoSidebar />
+		<GoHeader />
 		<div class="container__content">
-			<RouterView />
+			<GoSidebar class="container__sidebar" />
+			<RouterView class="container__view" />
 		</div>
 	</div>
 </template>
@@ -19,12 +19,15 @@ import GoSidebar from '@/components/GoSidebar.vue';
 .container {
 	height: 100%;
 	max-width: 1024px;
-	margin: @header-height;
-	padding: 30px;
-	transition: 0.2s;
+	margin: 0 auto;
 
-	&__header {
-		margin-bottom: 20px;
+	&__content {
+		display: flex;
+		flex-direction: row;
+	}
+
+	&__view {
+		flex-grow: 1;
 	}
 }
 </style>
