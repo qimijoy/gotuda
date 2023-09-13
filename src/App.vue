@@ -1,16 +1,19 @@
 <template>
-	<RouterView />
+	<main class="main">
+		<StationsList />
+	</main>
 </template>
 
 <script setup>
-import { RouterView } from 'vue-router';
+import StationsList from '@/components/StationsList.vue';
 </script>
 
 <style class="scope">
-.container {
-	max-width: 1024px;
+.main {
+	display: flex;
 	height: 100%;
-	margin: auto;
-	padding: 30px;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
 }
 </style>
