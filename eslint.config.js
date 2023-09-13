@@ -2,14 +2,13 @@ const globals = require('globals');
 
 const babelParser = require('@babel/eslint-parser');
 const js = require('@eslint/js');
+const eslintConfig = require('@qimijoy/eslint-config/configs/primary');
 
 const prettier = require('eslint-plugin-prettier');
 const prettierConfig = require('eslint-config-prettier');
 
 const vueParser = require('vue-eslint-parser');
 const vue = require('eslint-plugin-vue');
-
-const myESlintConfig = require('@qimijoy/eslint-config/configs/primary');
 
 module.exports = [
 	{
@@ -40,7 +39,7 @@ module.exports = [
 		},
 		rules: {
 			...js.configs.recommended.rules,
-			...myESlintConfig.rules,
+			...eslintConfig.rules,
 		},
 	},
 	// VUE
@@ -56,7 +55,6 @@ module.exports = [
 		plugins: { vue },
 		rules: {
 			...vue.configs.essential.rules,
-			'vue/no-multiple-template-root': 'off',
 		},
 	},
 	// Prettier options (must be last!)

@@ -1,7 +1,19 @@
 <template>
-	<h1>Список станций Московского метро, МЦК и МЦД</h1>
+	<main class="main">
+		<StationsList />
+	</main>
 </template>
 
-<script setup></script>
+<script setup>
+import StationsList from '@/components/StationsList.vue';
+</script>
 
-<style scoped lang="less"></style>
+<style scoped lang="less">
+.main {
+	display: flex;
+	height: 100%;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+</style>

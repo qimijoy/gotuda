@@ -1,19 +1,7 @@
 <template>
-	<main class="main">
-		<StationsList />
-	</main>
+	<h1>Hello, world!</h1>
 </template>
 
-<script setup>
-import StationsList from '@/components/StationsList.vue';
-</script>
+<script setup></script>
 
-<style scoped lang="less">
-.main {
-	display: flex;
-	height: 100%;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-}
-</style>
+<style scoped lang="less"></style>
