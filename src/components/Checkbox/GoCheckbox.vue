@@ -1,3 +1,5 @@
+<!-- v-model:checked -->
+
 <template>
 	<label class="checkbox">
 		<input
@@ -40,12 +42,20 @@ const props = defineProps({
 		type: Boolean,
 		default: false,
 	},
+	group: {
+		type: Boolean,
+		default: false,
+	},
 });
 
-const emit = defineEmits(['update:checked']);
+const emit = defineEmits(['update:checked', 'updateCheckboxGroup']);
 
 const handleClick = (event) => {
-	emit('update:checked', event.target.checked);
+	if (props.group) {
+		emit('updateCheckboxGroup', { optionValue: props.value, checked: event.target.checked });
+	} else {
+		emit('update:checked', event.target.checked);
+	}
 };
 </script>
 

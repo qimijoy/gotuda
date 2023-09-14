@@ -29,13 +29,17 @@ import { useStore } from 'vuex';
 
 import GoButton from '@/components/GoButton.vue';
 import { randomNumber } from '@/utils/functions';
+import GoCheckboxGroup from '@/components/Checkbox/GoCheckboxGroup.vue';
 
 // Data
 const store = useStore();
-const lines = computed(() => store.state.lines);
-const stations = computed(() => store.getters.stations);
 const randomStation = ref('');
 
+// Computed
+const lines = computed(() => store.state.lines);
+const stations = computed(() => store.getters.stations);
+
+// Functions
 const rollStation = (stations) => {
 	if (stations.length === 0) {
 		return null;
