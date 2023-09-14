@@ -7,7 +7,7 @@
 			<span class="random-station__choice">{{ randomStation }}</span>
 		</div>
 		<ul>
-			<li v-for="line of linesList.lines" :key="line.id" class="line">
+			<li v-for="line of lines" :key="line.id" class="line">
 				<span class="line__info">
 					<span class="line__info-name">{{ line.name }} ветка</span>
 					<span class="line__info-color" :style="{ backgroundColor: `#${line.hex_color}` }" />
@@ -24,47 +24,25 @@
 </template>
 
 <script setup>
-import { onMounted, ref, reactive, computed } from 'vue';
+import { ref, computed } from 'vue';
+import { useStore } from 'vuex';
+
 import GoButton from '@/components/GoButton.vue';
 import { randomNumber } from '@/utils/functions';
 
-let linesList = reactive({
-	lines: [],
-});
+// Data
+const store = useStore();
+const lines = computed(() => store.state.lines);
+const stations = computed(() => store.getters.stations);
+const randomStation = ref('');
 
-let randomStation = ref('');
-
-onMounted(async () => {
-	fetch('https://api.hh.ru/metro/1')
-		.then((response) => response.json())
-		.then((json) => (linesList.lines = json.lines))
-		.catch((error) => (linesList = error));
-});
-
-const stations = computed(() => {
-	return (
-		linesList.lines
-			.reduce((acc, current) => {
-				acc.push(...current.stations);
-				return acc;
-			}, [])
-			.map((station) => ({
-				id: station.id.split('.')[1],
-				name: station.name,
-				latitude: station.lat,
-				longitude: station.lng,
-			}))
-			.sort((a, b) => a.id - b.id) || []
-	);
-});
-
-function rollStation(array) {
-	if (array.length === 0) {
+const rollStation = (stations) => {
+	if (stations.length === 0) {
 		return null;
 	} else {
-		randomStation.value = array[randomNumber(0, array.length - 1)].name;
+		randomStation.value = stations[randomNumber(0, stations.length - 1)].name;
 	}
-}
+};
 </script>
 
 <style scoped lang="less">

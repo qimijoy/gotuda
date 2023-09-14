@@ -5,7 +5,17 @@
 </template>
 
 <script setup>
+import { onMounted } from 'vue';
+import { useStore } from 'vuex';
+
 import StationsList from '@/components/StationsList.vue';
+
+// Data
+const store = useStore();
+
+onMounted(async () => {
+	await store.commit('getLines');
+});
 </script>
 
 <style scoped lang="less">
