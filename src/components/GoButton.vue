@@ -1,13 +1,16 @@
 <template>
-	<button
-		:class="['button', `button_color-${color}`, { button_rounded: rounded, button_outlined: outlined }]"
-		:disabled="disabled"
-	>
-		{{ label }}
+	<button :class="classes" :disabled="disabled" @click="clickOnButton">
+		<span v-if="icon">
+			<font-awesome-icon :icon="`fa-regular fa-${icon}`" />
+		</span>
+		<span v-else>{{ label }}</span>
 	</button>
 </template>
 
 <script setup>
+import { computed } from 'vue';
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+
 const props = defineProps({
 	label: {
 		type: String,
@@ -26,7 +29,33 @@ const props = defineProps({
 	outlined: {
 		type: Boolean,
 	},
+	icon: {
+		type: String,
+	},
+	size: {
+		type: String,
+		default: 'normal',
+	},
 });
+
+const classes = computed(() => {
+	return [
+		'button',
+		`button_color-${props.color}`,
+		{
+			button_rounded: props.rounded,
+			button_outlined: props.outlined,
+			button_icon: props.icon,
+			'button_size-large': props.size === 'large',
+		},
+	];
+});
+
+const emit = defineEmits(['click']);
+
+const clickOnButton = () => {
+	emit('click');
+};
 </script>
 
 <style scoped lang="less">
@@ -111,6 +140,18 @@ const props = defineProps({
 		&:hover {
 			color: white;
 		}
+	}
+
+	&_icon {
+		padding: 0;
+		width: 40px;
+		height: 40px;
+		border-radius: 50%;
+	}
+
+	&_size-large {
+		height: 48px;
+		padding: 0 30px;
 	}
 }
 </style>

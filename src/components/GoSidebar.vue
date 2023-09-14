@@ -51,15 +51,14 @@ const links = ref([
 
 	&__link {
 		display: block;
-		border-radius: 32px;
-		padding: 10px;
+		border-radius: 12px;
 		border: 2px solid @white;
 		transition: 0.2s;
 		font-weight: bold;
 		margin-bottom: 10px;
 
 		&:hover {
-			border-color: @primary-hover;
+			color: @primary-hover;
 		}
 	}
 }
