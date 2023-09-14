@@ -55,6 +55,7 @@ module.exports = [
 		plugins: { vue },
 		rules: {
 			...vue.configs.essential.rules,
+			'vue/no-v-model-argument': 0,
 		},
 	},
 	// Prettier options (must be last!)

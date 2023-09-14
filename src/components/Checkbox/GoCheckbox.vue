@@ -1,6 +1,15 @@
 <template>
 	<label class="checkbox">
-		<input type="checkbox" class="checkbox__input" :name="name" :id="id" :value="value" />
+		<input
+			type="checkbox"
+			class="checkbox__input"
+			:name="name"
+			:id="id"
+			:value="value"
+			:checked="checked"
+			:disabled="disabled"
+			@change="handleClick($event)"
+		/>
 		<span class="checkbox__span">{{ label }}</span>
 	</label>
 </template>
@@ -23,23 +32,40 @@ const props = defineProps({
 		type: String,
 		default: '',
 	},
+	checked: {
+		type: Boolean,
+		default: false,
+	},
+	disabled: {
+		type: Boolean,
+		default: false,
+	},
 });
+
+const emit = defineEmits(['update:checked']);
+
+const handleClick = (event) => {
+	emit('update:checked', event.target.checked);
+};
 </script>
 
 <style scoped lang="less">
 @import '@/styles/colors';
 
 .checkbox {
+	display: inline-flex;
+	flex-direction: row;
+	align-items: center;
+
 	&__input {
-		position: absolute;
-		z-index: -1;
-		opacity: 0;
+		display: none;
 	}
 
 	&__span {
 		display: inline-flex;
 		align-items: center;
 		user-select: none;
+		cursor: pointer;
 
 		&::before {
 			content: '';
