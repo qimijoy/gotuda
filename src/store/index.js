@@ -2,6 +2,7 @@ import { createStore } from 'vuex';
 
 export default createStore({
 	state: {
+		isAuthorized: true, // временно. Считаем, что всегда авторизован
 		lines: [],
 	},
 	getters: {
