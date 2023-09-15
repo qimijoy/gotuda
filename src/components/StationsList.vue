@@ -29,7 +29,6 @@ import { useStore } from 'vuex';
 
 import GoButton from '@/components/GoButton.vue';
 import { randomNumber } from '@/utils/functions';
-import GoCheckboxGroup from '@/components/Checkbox/GoCheckboxGroup.vue';
 
 // Data
 const store = useStore();
