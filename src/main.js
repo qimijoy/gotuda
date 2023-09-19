@@ -17,10 +17,27 @@ import {
 } from '@fortawesome/free-regular-svg-icons';
 library.add([faHeart, faHand, faAddressBook, faCreditCard, faLemon, faHourglass]);
 
-const app = createApp(App);
+// i18n
+import { createI18n, useI18n } from 'vue-i18n';
+import { languages, defaultLocale } from '@/i18n';
+
+const i18n = createI18n({
+	legacy: false, // Composition API
+	fallbackLocale: defaultLocale,
+	locale: defaultLocale,
+	messages: Object.assign(languages),
+});
+
+const app = createApp(App, {
+	setup() {
+		const { t } = useI18n();
+		return { t };
+	},
+});
 
 app.use(router);
 app.use(store);
+app.use(i18n);
 
 app.component('font-awesome-icon', FontAwesomeIcon);
 

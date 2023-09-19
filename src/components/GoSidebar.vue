@@ -9,11 +9,16 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
+import { useI18n } from 'vue-i18n';
 
-const links = ref([
-	{ name: 'Go Tuda', href: '/gotuda' },
-	{ name: 'Visited', href: '/visited' },
+// States
+const { t } = useI18n();
+
+// Computed
+const links = computed(() => [
+	{ name: t('sections.goTuda'), href: '/gotuda' },
+	{ name: t('sections.visited'), href: '/visited' },
 ]);
 </script>
 

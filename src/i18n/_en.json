@@ -1,0 +1,11 @@
+{
+  "sections": {
+    "home": "Home",
+    "stations": "Stations",
+    "goTuda": "Go Tuda",
+    "visited": "Visited"
+  },
+  "GoTuda": {
+    "header": "Principle of operation"
+  }
+}

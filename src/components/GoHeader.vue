@@ -7,11 +7,16 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { computed } from 'vue';
+import { useI18n } from 'vue-i18n';
 
-const links = ref([
-	{ name: 'Home', href: '/' },
-	{ name: 'Stations', href: '/stations' },
+// States
+const { t } = useI18n();
+
+// Computed
+const links = computed(() => [
+	{ name: t('sections.home'), href: '/' },
+	{ name: t('sections.stations'), href: '/stations' },
 ]);
 </script>
 
