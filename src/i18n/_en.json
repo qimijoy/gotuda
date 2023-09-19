@@ -5,7 +5,8 @@
     "goTuda": "Go Tuda",
     "visited": "Visited"
   },
-  "GoTuda": {
+  "goTuda": {
     "header": "Principle of operation"
-  }
+  },
+  "switchLang": "Switch lang"
 }

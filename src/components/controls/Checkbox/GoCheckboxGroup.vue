@@ -17,7 +17,7 @@
 </template>
 
 <script setup>
-import GoCheckbox from '@/components/Checkbox/GoCheckbox.vue';
+import GoCheckbox from '@/components/controls/Checkbox/GoCheckbox.vue';
 import { computed } from 'vue';
 
 const props = defineProps({

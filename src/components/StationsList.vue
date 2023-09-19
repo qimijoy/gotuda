@@ -27,7 +27,7 @@
 import { ref, computed } from 'vue';
 import { useStore } from 'vuex';
 
-import GoButton from '@/components/GoButton.vue';
+import GoButton from '@/components/controls/GoButton.vue';
 import { randomNumber } from '@/utils/functions';
 
 // Data

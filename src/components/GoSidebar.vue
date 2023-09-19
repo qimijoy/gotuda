@@ -61,6 +61,7 @@ const links = computed(() => [
 		transition: 0.2s;
 		font-weight: bold;
 		margin-bottom: 10px;
+		padding: 0 10px;
 
 		&:hover {
 			color: @primary-hover;

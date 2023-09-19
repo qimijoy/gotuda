@@ -15,16 +15,19 @@ import {
 	faLemon,
 	faHourglass,
 } from '@fortawesome/free-regular-svg-icons';
-library.add([faHeart, faHand, faAddressBook, faCreditCard, faLemon, faHourglass]);
+
+import { faGlobe } from '@fortawesome/free-solid-svg-icons';
+library.add([faHeart, faHand, faAddressBook, faCreditCard, faLemon, faHourglass, faGlobe]);
 
 // i18n
 import { createI18n, useI18n } from 'vue-i18n';
 import { languages, defaultLocale } from '@/i18n';
+const localStorageLang = localStorage.getItem('lang');
 
 const i18n = createI18n({
 	legacy: false, // Composition API
 	fallbackLocale: defaultLocale,
-	locale: defaultLocale,
+	locale: localStorageLang || defaultLocale,
 	messages: Object.assign(languages),
 });
 

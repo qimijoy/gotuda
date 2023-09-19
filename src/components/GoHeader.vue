@@ -1,17 +1,21 @@
 <template>
 	<header class="header">
-		<router-link class="header__link" v-for="link of links" :to="link.href" :key="link.name">
-			{{ link.name }}
-		</router-link>
+		<nav class="header__links">
+			<router-link class="header__link" v-for="link of links" :to="link.href" :key="link.name">
+				{{ link.name }}
+			</router-link>
+		</nav>
+		<GoLangSwitcher />
 	</header>
 </template>
 
 <script setup>
 import { computed } from 'vue';
 import { useI18n } from 'vue-i18n';
+import GoLangSwitcher from '@/components/GoLangSwitcher.vue';
 
 // States
-const { t } = useI18n();
+const { t, locale } = useI18n();
 
 // Computed
 const links = computed(() => [
@@ -27,6 +31,7 @@ const links = computed(() => [
 .header {
 	display: flex;
 	align-items: center;
+	justify-content: space-between;
 
 	height: @header-height;
 	width: 100%;
