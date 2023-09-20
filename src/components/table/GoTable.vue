@@ -2,7 +2,9 @@
 	<div class="table">
 		<div class="table__container">
 			<div class="table__headings" :style="{ 'grid-template-columns': columnTemplates }">
-				<div class="table__heading-name" v-for="heading of headings" :key="heading">{{ heading }}</div>
+				<div class="table__heading-name" v-for="heading of headings" :key="heading" @click="clickOnHead(heading)">
+					{{ heading }}
+				</div>
 			</div>
 			<slot></slot>
 		</div>
@@ -18,6 +20,13 @@ const props = defineProps({
 		type: String,
 	},
 });
+
+const emits = defineEmits(['sorting']);
+
+// Functions
+const clickOnHead = (columnName) => {
+	emits('sorting', columnName.toLowerCase());
+};
 </script>
 
 <style scoped lang="less">
