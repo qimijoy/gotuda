@@ -3,6 +3,8 @@ import App from '@/App.vue';
 import router from '@/router';
 import store from '@/store';
 
+import { createPinia } from 'pinia';
+
 // Icons
 // https://fontawesome.com/search?o=r&m=free
 import { library } from '@fortawesome/fontawesome-svg-core';
@@ -40,6 +42,7 @@ const app = createApp(App, {
 
 app.use(router);
 app.use(store);
+app.use(createPinia());
 app.use(i18n);
 
 app.component('font-awesome-icon', FontAwesomeIcon);
