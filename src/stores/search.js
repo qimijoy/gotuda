@@ -1,20 +1,22 @@
 import { defineStore } from 'pinia';
+import { ref } from 'vue';
 
-export const useSearchStore = defineStore('searchStore', {
-	state: () => ({
-		posts: [],
-		loading: false,
-	}),
-	actions: {
-		async getPosts() {
-			this.loading = true;
+export const useSearchStore = defineStore('searchStore', () => {
+	const posts = ref([]);
+	const loading = ref(false);
 
-			const res = await fetch('https://jsonplaceholder.typicode.com/posts/');
-			const data = await res.json();
+	const getPosts = async () => {
+		loading.value = true;
 
-			this.posts.push(...data);
+		const res = await fetch('https://jsonplaceholder.typicode.com/posts/');
+		posts.value = await res.json();
 
-			this.loading = false;
-		},
-	},
+		loading.value = false;
+	};
+
+	return {
+		posts,
+		loading,
+		getPosts,
+	};
 });
