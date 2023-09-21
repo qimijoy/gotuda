@@ -31,4 +31,12 @@ export const useMainStore = defineStore('mainStore', {
 			return this.movies.length;
 		},
 	},
+	actions: {
+		addMovie(movie) {
+			this.movies.push(movie);
+		},
+		deleteMovie(id) {
+			this.movies = this.movies.filter((movie) => movie.id !== id);
+		},
+	},
 });
