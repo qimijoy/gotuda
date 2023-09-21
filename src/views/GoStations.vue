@@ -1,19 +1,27 @@
 <template>
 	<main>
-		<h2>Какой-то контент</h2>
-		<div v-for="movie of movies" :key="movie.id">
-			<span>{{ movie }}</span>
-			<button @click="removeMovie(movie.id)">Удалить фильм фильм</button>
-		</div>
-		<button @click="addMovie">Добавить фильм</button>
+		<template v-if="searchStore.loading">
+			<GoLoader />
+		</template>
+		<template v-else>
+			<h2>Какой-то контент</h2>
+			<div v-for="movie of movies" :key="movie.id">
+				<span>{{ movie }}</span>
+				<button @click="removeMovie(movie.id)">Удалить фильм фильм</button>
+			</div>
+			<button @click="addMovie">Добавить фильм</button>
+		</template>
 	</main>
 </template>
 
 <script setup>
-import { computed } from 'vue';
+import { ref, computed, onMounted } from 'vue';
 import { useMainStore } from '@/stores/main';
+import { useSearchStore } from '@/stores/search';
+import GoLoader from '@/components/GoLoader.vue';
 
 const mainStore = useMainStore();
+const searchStore = useSearchStore();
 
 const movieExample = () => ({
 	id: Math.random(),
@@ -33,6 +41,10 @@ const addMovie = () => {
 const removeMovie = (id) => {
 	mainStore.deleteMovie(id);
 };
+
+onMounted(() => {
+	searchStore.getPosts();
+});
 </script>
 
 <style scoped lang="less"></style>
