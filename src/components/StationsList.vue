@@ -9,15 +9,15 @@
 		<ul>
 			<li v-for="line of lines" :key="line.id" class="line">
 				<span class="line__info">
-					<span class="line__info-name">{{ line.name }} ветка</span>
 					<span class="line__info-color" :style="{ backgroundColor: `#${line.hex_color}` }" />
+					<span class="line__info-name">{{ line.name }} ветка</span>
 				</span>
 
-				<ul class="line__stations">
-					<li v-for="station of line.stations" :key="station.id" class="main__line-station">
-						<p>{{ station.name }}</p>
-					</li>
-				</ul>
+				<!--				<ul class="line__stations">-->
+				<!--					<li v-for="station of line.stations" :key="station.id" class="main__line-station">-->
+				<!--						<p>{{ station.name }}</p>-->
+				<!--					</li>-->
+				<!--				</ul>-->
 			</li>
 		</ul>
 	</div>
@@ -56,19 +56,17 @@ const rollStation = (stations) => {
 }
 
 .line {
+	list-style: none;
 	&__info {
 		display: flex;
 		flex-direction: row;
 		align-items: center;
 	}
 
-	&__info-name {
-		margin-right: 5px;
-	}
-
 	&__info-color {
 		width: 15px;
 		height: 15px;
+		margin-right: 5px;
 	}
 
 	&__stations {

@@ -1,7 +1,5 @@
 <template>
-	<div class="container">
-		<component :is="layout" />
-	</div>
+	<component :is="layout" />
 </template>
 
 <script setup>
@@ -16,13 +14,3 @@ const route = useRoute();
 // Computed
 const layout = computed(() => layouts[route.meta.layout]);
 </script>
-
-<style lang="less">
-@import '@/styles';
-
-.container {
-	height: 100%;
-	max-width: 1024px;
-	margin: 0 auto;
-}
-</style>

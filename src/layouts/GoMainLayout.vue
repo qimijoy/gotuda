@@ -1,9 +1,10 @@
 <template>
-	<div class="main-layout">
-		<GoHeader class="main-layout__header" />
-		<div class="main-layout__content">
-			<GoSidebar class="main-layout__sidebar" />
-			<RouterView class="main-layout__view" />
+	<div class="gotuda">
+		<GoHeader class="main__header" />
+
+		<div class="gotuda__content">
+			<GoSidebar class="gotuda__sidebar" />
+			<RouterView class="gotuda__view" />
 		</div>
 	</div>
 </template>
@@ -14,7 +15,10 @@ import GoSidebar from '@/components/GoSidebar.vue';
 </script>
 
 <style scoped lang="less">
-.main-layout {
+.gotuda {
+	max-width: 1024px;
+	margin: 0 auto;
+
 	&__content {
 		display: flex;
 		flex-direction: row;
