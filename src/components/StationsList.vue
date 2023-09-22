@@ -1,6 +1,6 @@
 <template>
 	<div class="stations-list">
-		<GoButton label="Го туда" size="large" @click="rollStation(stations)" />
+		<GoButton size="large" @click="rollStation(stations)">Го туда</GoButton>
 
 		<div v-if="randomStation" class="random-station">
 			<span>Ты сегодня покатишь на станцию </span>

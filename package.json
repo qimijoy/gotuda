@@ -39,6 +39,7 @@
     "lint-staged": "^14.0.1",
     "prettier": "3.0.3",
     "vite": "^4.4.9",
+    "vite-svg-loader": "^4.0.0",
     "vue-eslint-parser": "^9.3.1"
   }
 }

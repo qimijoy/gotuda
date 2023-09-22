@@ -9,7 +9,7 @@ const isOn = ref(false);
 </script>
 
 <style scoped lang="less">
-@import '@/styles/colors';
+@import 'palette';
 
 .switch {
 	display: inline-block;

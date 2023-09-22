@@ -60,7 +60,7 @@ const handleClick = (event) => {
 </script>
 
 <style scoped lang="less">
-@import '@/styles/colors';
+@import 'palette';
 
 .checkbox {
 	display: inline-flex;

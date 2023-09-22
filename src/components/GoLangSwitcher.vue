@@ -1,16 +1,17 @@
 <template>
-	<div class="lang-switcher">
-		<GoButton :label="$t('switchLang')" @click="switchLang" icon="fa-solid fa-globe" />
-	</div>
+	<GoButton class="lang-switcher" icon @click="switchLang">
+		<LangSwitcherIcon />
+	</GoButton>
 </template>
 
 <script setup>
 import { useI18n } from 'vue-i18n';
 
 import GoButton from '@/components/controls/GoButton.vue';
+import LangSwitcherIcon from '@/assets/images/icons/LangSwitcherIcon.svg';
 
 // States
-const { t, locale } = useI18n();
+const { locale } = useI18n();
 
 // Functions
 const switchLang = () => {

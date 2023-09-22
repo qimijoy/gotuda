@@ -40,7 +40,7 @@ const clickOnTab = (tabName) => {
 </script>
 
 <style scoped lang="less">
-@import '@/styles/colors';
+@import 'palette';
 
 .tabs {
 	&__nav {

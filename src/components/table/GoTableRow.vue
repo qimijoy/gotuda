@@ -16,7 +16,7 @@ const props = defineProps({
 </script>
 
 <style scoped lang="less">
-@import '@/styles/breakpoints';
+@import '@/styles/_breakpoints';
 
 .table__row {
 	border-bottom: 2px solid #eeeff4;

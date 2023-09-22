@@ -1,40 +1,30 @@
 <template>
-	<button :class="classes" :disabled="disabled" @click="clickOnButton">
-		<span v-if="icon">
-			<font-awesome-icon :icon="`${icon}`" />
-		</span>
-		<span v-else>{{ label }}</span>
+	<button :class="classes" :disabled="disabled" :type="type" @click="clickOnButton">
+		<slot></slot>
 	</button>
 </template>
 
 <script setup>
 import { computed } from 'vue';
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
 const props = defineProps({
-	label: {
+	type: {
 		type: String,
-		default: 'Button',
+		default: 'button',
+		validator: (value) => ['button', 'submit'].includes(value),
 	},
 	color: {
 		type: String,
 		default: 'primary',
-	},
-	rounded: {
-		type: Boolean,
+		validator: (value) => ['primary', 'secondary', 'success', 'info', 'warning', 'danger'].includes(value),
 	},
 	disabled: {
 		type: Boolean,
-	},
-	outlined: {
-		type: Boolean,
+		default: false,
 	},
 	icon: {
-		type: String,
-	},
-	size: {
-		type: String,
-		default: 'normal',
+		type: Boolean,
+		default: false,
 	},
 });
 
@@ -43,23 +33,22 @@ const classes = computed(() => {
 		'button',
 		`button_color-${props.color}`,
 		{
-			button_rounded: props.rounded,
-			button_outlined: props.outlined,
 			button_icon: props.icon,
-			'button_size-large': props.size === 'large',
 		},
 	];
 });
 
-const emit = defineEmits(['click']);
+const emits = defineEmits({
+	click: null,
+});
 
 const clickOnButton = () => {
-	emit('click');
+	emits('click');
 };
 </script>
 
-<style scoped lang="less">
-@import '@/styles/colors';
+<style lang="less" scoped>
+@import '@/styles/_palette';
 
 .button {
 	padding: 0 20px;
@@ -72,74 +61,32 @@ const clickOnButton = () => {
 	border: 1px solid @black;
 
 	&_color-primary {
-		background-color: @primary;
-		border-color: @primary;
-
-		&:enabled:hover {
-			background-color: @primary-hover;
-		}
+		.define-color(@primary, @primary-hover);
 	}
 
 	&_color-secondary {
-		background-color: @secondary;
-		border-color: @secondary;
-
-		&:enabled:hover {
-			background-color: @secondary-hover;
-		}
+		.define-color(@secondary, @secondary-hover);
 	}
 
 	&_color-success {
-		background-color: @success;
-		border-color: @success;
-
-		&:enabled:hover {
-			background-color: @success-hover;
-		}
+		.define-color(@success, @success-hover);
 	}
 
 	&_color-info {
-		background-color: @info;
-		border-color: @info;
-
-		&:enabled:hover {
-			background-color: @info-hover;
-		}
+		.define-color(@info, @info-hover);
 	}
 
 	&_color-warning {
-		background-color: @warning;
-		border-color: @warning;
-
-		&:enabled:hover {
-			background-color: @warning-hover;
-		}
+		.define-color(@warning, @warning-hover);
 	}
+
 	&_color-danger {
-		background-color: @danger;
-		border-color: @danger;
-
-		&:enabled:hover {
-			background-color: @danger-hover;
-		}
-	}
-
-	&_rounded {
-		border-radius: 15px;
+		.define-color(@danger, @danger-hover);
 	}
 
 	&:disabled {
 		opacity: 0.6;
 		cursor: default;
-	}
-
-	&_outlined {
-		background: transparent;
-		color: black;
-
-		&:hover {
-			color: white;
-		}
 	}
 
 	&_icon {
@@ -148,10 +95,22 @@ const clickOnButton = () => {
 		height: 40px;
 		border-radius: 50%;
 	}
+}
 
-	&_size-large {
-		height: 48px;
-		padding: 0 30px;
+// Mixins
+.define-color(@color, @color-hover) {
+	background-color: @color;
+	border-color: @color;
+	transition: 0.5s;
+
+	&:enabled:hover,
+	&:enabled:focus {
+		background-color: @color-hover;
+		border-color: @color-hover;
+	}
+
+	&:enabled:focus {
+		outline: none;
 	}
 }
 </style>

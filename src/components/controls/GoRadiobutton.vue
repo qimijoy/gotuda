@@ -53,7 +53,7 @@ const handleClick = (event) => {
 </script>
 
 <style scoped lang="less">
-@import '@/styles/colors';
+@import 'palette';
 
 .radiobutton {
 	display: inline-flex;

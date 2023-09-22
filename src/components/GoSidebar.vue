@@ -23,8 +23,8 @@ const links = computed(() => [
 </script>
 
 <style scoped lang="less">
-@import '@/styles/colors';
-@import '@/styles/sizes';
+@import '@/styles/_palette';
+@import '@/styles/_sizes';
 
 .sidebar {
 	display: flex;

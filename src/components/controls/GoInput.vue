@@ -61,7 +61,7 @@ const updateValue = (event) => {
 </script>
 
 <style scoped lang="less">
-@import '@/styles/colors';
+@import 'palette';
 
 .input {
 	position: relative;

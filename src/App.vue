@@ -18,7 +18,7 @@ const layout = computed(() => layouts[route.meta.layout]);
 </script>
 
 <style lang="less">
-@import '@/styles/main';
+@import '@/styles';
 
 .container {
 	height: 100%;
