@@ -1,16 +1,12 @@
 # gotuda
 
-Sample text.
+The description will be later.
 
 
 ## Project Setup
 
 ```sh
 npm ci
-```
-
-## Husky Install
-```sh
 npx husky install
 ```
 
