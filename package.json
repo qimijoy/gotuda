@@ -8,22 +8,18 @@
     "lint": "eslint ./"
   },
   "dependencies": {
-    "@fortawesome/fontawesome-svg-core": "^6.4.2",
-    "@fortawesome/free-regular-svg-icons": "^6.4.2",
-    "@fortawesome/free-solid-svg-icons": "^6.4.2",
-    "@fortawesome/vue-fontawesome": "^3.0.3",
     "@vuelidate/core": "^2.0.3",
     "@vuelidate/validators": "^2.0.4",
     "pinia": "^2.1.6",
     "vue": "^3.3.4",
     "vue-i18n": "^9.4.1",
-    "vue-router": "^4.2.4",
-    "vuex": "^4.0.2"
+    "vue-router": "^4.2.5",
+    "vuex": "^4.1.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.22.17",
+    "@babel/core": "^7.22.20",
     "@babel/eslint-parser": "^7.22.15",
-    "@babel/preset-env": "^7.22.15",
+    "@babel/preset-env": "^7.22.20",
     "@eslint/js": "^8.49.0",
     "@qimijoy/browserslist-config": "^1.0.7",
     "@qimijoy/eslint-config": "^1.0.1",
@@ -33,7 +29,7 @@
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-prettier": "^5.0.0",
     "eslint-plugin-vue": "^9.17.0",
-    "globals": "^13.21.0",
+    "globals": "^13.22.0",
     "husky": "^8.0.3",
     "less": "^4.2.0",
     "lint-staged": "^14.0.1",
