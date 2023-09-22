@@ -1,5 +1,6 @@
 <template>
 	<header class="header">
+		<GoBurger color="primary" />
 		<nav class="header__links">
 			<router-link class="header__link" v-for="link of links" :to="link.href" :key="link.name">
 				{{ link.name }}
@@ -13,6 +14,7 @@
 import { computed } from 'vue';
 import { useI18n } from 'vue-i18n';
 import GoLangSwitcher from '@/components/GoLangSwitcher.vue';
+import GoBurger from '@/components/GoBurger.vue';
 
 // States
 const { t, locale } = useI18n();

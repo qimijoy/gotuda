@@ -57,32 +57,29 @@ const clickOnButton = () => {
 	border-radius: 7px;
 	cursor: pointer;
 	font-size: 1rem;
-	transition: 0.2s;
 	border: 1px solid @black;
 
-	&_color-primary {
-		.define-color(@primary, @primary-hover);
-	}
+	each(@colors, {
+		&_color-@{key} {
+			background-color: @value;
+			border-color: @value;
+			transition: 0.3s;
 
-	&_color-secondary {
-		.define-color(@secondary, @secondary-hover);
-	}
+			&:enabled:focus {
+				outline: none;
+			}
+		}
+	});
 
-	&_color-success {
-		.define-color(@success, @success-hover);
-	}
-
-	&_color-info {
-		.define-color(@info, @info-hover);
-	}
-
-	&_color-warning {
-		.define-color(@warning, @warning-hover);
-	}
-
-	&_color-danger {
-		.define-color(@danger, @danger-hover);
-	}
+	each(@colors-hover, {
+		&_color-@{key} {
+			&:enabled:hover,
+			&:enabled:focus {
+				background-color: @value;
+				border-color: @value;
+			}
+		}
+	});
 
 	&:disabled {
 		opacity: 0.6;
@@ -94,23 +91,6 @@ const clickOnButton = () => {
 		width: 40px;
 		height: 40px;
 		border-radius: 50%;
-	}
-}
-
-// Mixins
-.define-color(@color, @color-hover) {
-	background-color: @color;
-	border-color: @color;
-	transition: 0.5s;
-
-	&:enabled:hover,
-	&:enabled:focus {
-		background-color: @color-hover;
-		border-color: @color-hover;
-	}
-
-	&:enabled:focus {
-		outline: none;
 	}
 }
 </style>
