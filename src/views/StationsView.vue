@@ -35,10 +35,6 @@ import { useMainStore } from '@/stores/MainStore';
 const mainStore = useMainStore();
 const randomStation = ref('');
 
-onMounted(() => {
-	mainStore.getStations();
-});
-
 import GoButton from '@/components/controls/GoButton.vue';
 import { randomNumber } from '@/utils/functions';
 
