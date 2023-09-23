@@ -5,7 +5,7 @@ import GoTuda from '@/views/GoTuda.vue';
 import GoVisited from '@/views/GoVisited.vue';
 import GoStations from '@/views/GoStations.vue';
 
-import store from '@/store';
+import { useMainStore } from '@/stores/MainStore';
 
 const router = createRouter({
 	history: createWebHistory(),
@@ -44,8 +44,10 @@ const router = createRouter({
 });
 
 router.beforeEach((to, from, next) => {
+	const mainStore = useMainStore();
+
 	// Авторизован ли пользователь
-	const isAuthorized = store.state.isAuthorized;
+	const isAuthorized = mainStore.isAuthorized;
 
 	// Идем ли мы на роут, где необходима авторизация
 	const needAuth = to.matched.some((record) => record.meta.needAuth);

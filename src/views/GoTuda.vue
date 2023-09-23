@@ -6,15 +6,15 @@
 
 <script setup>
 import { onMounted } from 'vue';
-import { useStore } from 'vuex';
+import { useMainStore } from '@/stores/MainStore';
 
 import StationsList from '@/components/StationsList.vue';
 
 // Data
-const store = useStore();
+const mainStore = useMainStore();
 
-onMounted(async () => {
-	await store.commit('getLines');
+onMounted(() => {
+	mainStore.getStations();
 });
 </script>
 
