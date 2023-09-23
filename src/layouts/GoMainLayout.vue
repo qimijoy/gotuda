@@ -10,8 +10,15 @@
 </template>
 
 <script setup>
+import { computed } from 'vue';
 import GoHeader from '@/components/GoHeader.vue';
 import GoSidebar from '@/components/GoSidebar.vue';
+
+import { useMainStore } from '@/stores/MainStore';
+
+const mainStore = useMainStore();
+
+const isMenuOpen = computed(() => mainStore.isMenuOpen);
 </script>
 
 <style scoped lang="less">

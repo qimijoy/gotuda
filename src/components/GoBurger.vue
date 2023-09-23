@@ -7,6 +7,9 @@
 </template>
 
 <script setup>
+import { computed, ref } from 'vue';
+
+// PROPS
 const props = defineProps({
 	color: {
 		type: String,
@@ -18,12 +21,16 @@ const props = defineProps({
 		default: false,
 	},
 });
-import { computed, ref } from 'vue';
 
-// States
+// EMITS
+const emits = defineEmits({
+	change: (value) => typeof value === 'boolean',
+});
+
+// STATES
 const isBurgerOpen = ref(props.state);
 
-// Computed
+// COMPUTED
 const classes = computed(() => {
 	return ['burger', `burger_color-${props.color}`];
 });
@@ -37,9 +44,10 @@ const barClasses = (index) => [
 	},
 ];
 
-// Functions
+// FUNCTIONS
 const toggleBurger = () => {
 	isBurgerOpen.value = !isBurgerOpen.value;
+	emits('change', isBurgerOpen.value);
 };
 </script>
 
@@ -104,6 +112,7 @@ const toggleBurger = () => {
 	each(@colors-hover, {
 		&_color-@{key} {
 			border: 1px solid transparent;
+			transition: 0.3s;
 
 			&:focus {
 				outline: none;
