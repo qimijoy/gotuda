@@ -1,12 +1,12 @@
 <template>
 	<header class="header">
-		<GoBurger color="primary" @change="(state) => setMenuState(state)" />
-		<nav class="header__links">
-			<router-link class="header__link" v-for="link of links" :to="link.href" :key="link.name">
+		<GoBurger class="header__burger" color="primary" @change="(state) => setMenuState(state)" />
+		<nav class="header__nav">
+			<router-link class="header__link" v-for="link of links" :key="link.name" :to="link.href">
 				{{ link.name }}
 			</router-link>
 		</nav>
-		<GoLangSwitcher />
+		<GoLangSwitcher class="header__lang-switcher" />
 	</header>
 </template>
 
@@ -25,7 +25,7 @@ const mainStore = useMainStore();
 
 // Computed
 const links = computed(() => [
-	{ name: t('sections.home'), href: '/' },
+	{ name: t('sections.goTuda'), href: '/' },
 	{ name: t('sections.stations'), href: '/stations' },
 ]);
 
@@ -41,18 +41,47 @@ const setMenuState = (value) => {
 .header {
 	display: flex;
 	align-items: center;
-	justify-content: space-between;
 
 	height: @header-height;
 	width: 100%;
 
 	background-color: @white;
-	font-weight: bold;
 	padding: 0 20px;
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.07);
 
+	&__burger {
+		margin-right: 40px;
+	}
+
+	&__nav {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+	}
+
 	&__link {
 		padding: 10px;
+		font-weight: bold;
+		text-decoration: none;
+		color: @primary;
+		outline: none;
+
+		&:visited {
+			color: @primary;
+		}
+
+		&:hover,
+		&:focus {
+			color: @primary-hover;
+		}
+
+		&:active {
+			color: @primary-active;
+		}
+	}
+
+	&__lang-switcher {
+		margin-left: auto;
 	}
 }
 </style>

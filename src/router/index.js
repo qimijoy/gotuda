@@ -1,9 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import AuthView from '@/views/AuthView.vue';
 import HomeView from '@/views/HomeView.vue';
-import GoTuda from '@/views/GoTuda.vue';
-import GoVisited from '@/views/GoVisited.vue';
 import GoStations from '@/views/GoStations.vue';
+import GoVisited from '@/views/GoVisited.vue';
 
 import { useMainStore } from '@/stores/MainStore';
 
@@ -23,21 +22,15 @@ const router = createRouter({
 			meta: { layout: 'GoMainLayout', needAuth: true },
 		},
 		{
-			path: '/gotuda',
-			name: 'GoTuda',
-			component: GoTuda,
+			path: '/stations',
+			name: 'GoStations',
+			component: GoStations,
 			meta: { layout: 'GoMainLayout', needAuth: true },
 		},
 		{
 			path: '/visited',
 			name: 'GoVisited',
 			component: GoVisited,
-			meta: { layout: 'GoMainLayout', needAuth: true },
-		},
-		{
-			path: '/stations',
-			name: 'GoStations',
-			component: GoStations,
 			meta: { layout: 'GoMainLayout', needAuth: true },
 		},
 	],

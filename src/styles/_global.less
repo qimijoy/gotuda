@@ -8,26 +8,30 @@
 }
 
 html {
-	font-size: 20px;
+	font-size: 22px;
 	font-family: Roboto, sans-serif;
 	color: @black;
 
 	@media @small {
-		font-size: 19px;
+		font-size: 21px;
 	}
 
 	@media @medium {
-		font-size: 18px;
+		font-size: 20px;
 	}
 	@media @large {
+		font-size: 19px;
+	}
+
+	@media @extra-large {
+		font-size: 18px;
+	}
+
+	@media @extra-large {
 		font-size: 17px;
 	}
+}
 
-	@media @extra-large {
-		font-size: 16px;
-	}
-
-	@media @extra-large {
-		font-size: 15px;
-	}
+html, body, .gotuda-app {
+	height: 100%;
 }

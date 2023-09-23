@@ -17,8 +17,8 @@ const { t } = useI18n();
 
 // Computed
 const links = computed(() => [
-	{ name: t('sections.goTuda'), href: '/gotuda' },
 	{ name: t('sections.visited'), href: '/visited' },
+	{ name: t('sections.home'), href: '/' },
 ]);
 </script>
 
