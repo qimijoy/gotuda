@@ -8,9 +8,9 @@ import { useRoute } from 'vue-router';
 
 import layouts from '@/layouts';
 
-// States
+// STATES
 const route = useRoute();
 
-// Computed
+// COMPUTED
 const layout = computed(() => layouts[route.meta.layout]);
 </script>

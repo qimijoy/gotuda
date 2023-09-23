@@ -25,6 +25,7 @@ const links = computed(() => [
 <style scoped lang="less">
 @import '@/styles/_palette';
 @import '@/styles/_sizes';
+@import '@/styles/_mixins';
 
 .sidebar {
 	display: flex;
@@ -51,21 +52,13 @@ const links = computed(() => [
 
 	&__links {
 		padding: 20px;
-		flex-grow: 1;
+		display: flex;
+		flex-direction: column;
+		width: 100%;
 	}
 
 	&__link {
-		display: block;
-		border-radius: 12px;
-		border: 2px solid @white;
-		transition: 0.2s;
-		font-weight: bold;
-		margin-bottom: 10px;
-		padding: 0 10px;
-
-		&:hover {
-			color: @primary-hover;
-		}
+		.nav-link(@primary, @primary-hover);
 	}
 }
 </style>

@@ -24,7 +24,7 @@ const mainStore = useMainStore();
 const isMenuOpen = computed(() => mainStore.isMenuOpen);
 </script>
 
-<style scoped lang="less">
+<style lang="less" scoped>
 @import '@/styles/_sizes';
 
 .gotuda {

@@ -37,6 +37,7 @@ const setMenuState = (value) => {
 <style scoped lang="less">
 @import '@/styles/_palette';
 @import '@/styles/_sizes';
+@import '@/styles/_mixins';
 
 .header {
 	display: flex;
@@ -60,24 +61,7 @@ const setMenuState = (value) => {
 	}
 
 	&__link {
-		padding: 10px;
-		font-weight: bold;
-		text-decoration: none;
-		color: @primary;
-		outline: none;
-
-		&:visited {
-			color: @primary;
-		}
-
-		&:hover,
-		&:focus {
-			color: @primary-hover;
-		}
-
-		&:active {
-			color: @primary-active;
-		}
+		.nav-link(@primary, @primary-hover);
 	}
 
 	&__lang-switcher {
