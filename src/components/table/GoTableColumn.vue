@@ -24,7 +24,7 @@ const props = defineProps({
 </script>
 
 <style scoped lang="less">
-@import '@/styles/_breakpoints';
+@import '@/assets/styles/_breakpoints';
 
 .table__column {
 	padding: 15px 0;

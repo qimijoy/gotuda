@@ -113,8 +113,8 @@ const clickOnHead = (columnName) => {
 </script>
 
 <style scoped lang="less">
-@import '@/styles/_palette';
-@import '@/styles/_breakpoints';
+@import '@/assets/styles/_palette';
+@import '@/assets/styles/_breakpoints';
 
 .table {
 	display: flex;

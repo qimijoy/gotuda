@@ -1,5 +1,5 @@
 <template>
-	<div :class="classes" @click="toggleBurger()" @keydown.enter="toggleBurger()" tabindex="0">
+	<div :class="classes" @click="toggleBurger()" @keydown.enter="toggleBurger()" tabindex="0" ref="burger">
 		<span :class="barClasses(1)"></span>
 		<span :class="barClasses(2)"></span>
 		<span :class="barClasses(3)"></span>
@@ -20,6 +20,10 @@ const props = defineProps({
 		type: Boolean,
 		default: false,
 	},
+	disabled: {
+		type: Boolean,
+		default: false,
+	},
 });
 
 // EMITS
@@ -28,11 +32,12 @@ const emits = defineEmits({
 });
 
 // STATES
+const burger = ref(null);
 const isBurgerOpen = ref(props.state);
 
 // COMPUTED
 const classes = computed(() => {
-	return ['burger', `burger_color-${props.color}`];
+	return ['burger', props.disabled ? 'burger_disabled' : null, `burger_color-${props.color}`];
 });
 
 const barClasses = (index) => [
@@ -46,13 +51,15 @@ const barClasses = (index) => [
 
 // FUNCTIONS
 const toggleBurger = () => {
-	isBurgerOpen.value = !isBurgerOpen.value;
-	emits('change', isBurgerOpen.value);
+	if (!burger.value.classList.contains('burger_disabled')) {
+		isBurgerOpen.value = !isBurgerOpen.value;
+		emits('change', isBurgerOpen.value);
+	}
 };
 </script>
 
 <style lang="less" scoped>
-@import '@/styles/_palette';
+@import '@/assets/styles/_palette';
 
 .burger {
 	position: relative;
@@ -63,6 +70,11 @@ const toggleBurger = () => {
 
 	cursor: pointer;
 	border-radius: 25%;
+
+	&_disabled {
+		opacity: 0.5;
+		pointer-events: none;
+	}
 
 	&__bar {
 		position: absolute;

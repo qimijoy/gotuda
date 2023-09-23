@@ -1,8 +1,12 @@
 <template>
 	<div class="gotuda">
-		<GoHeader class="main__header" />
+		<GoHeader />
 
-		<div class="gotuda__content">
+		<div class="gotuda__loader" v-if="isStationsLoading">
+			<GoLoader />
+		</div>
+
+		<div v-else class="gotuda__content">
 			<GoSidebar class="gotuda__sidebar" v-if="isMenuOpen" />
 
 			<RouterView class="gotuda__view" :class="{ gotuda__view_expanded: !isMenuOpen }" />
@@ -11,21 +15,27 @@
 </template>
 
 <script setup>
-import { computed } from 'vue';
+import { computed, onMounted } from 'vue';
 import { useMainStore } from '@/stores/MainStore';
 
 import GoHeader from '@/components/GoHeader.vue';
 import GoSidebar from '@/components/GoSidebar.vue';
+import GoLoader from '@/components/GoLoader.vue';
 
 // STATES
 const mainStore = useMainStore();
 
 // COMPUTED
 const isMenuOpen = computed(() => mainStore.isMenuOpen);
+const isStationsLoading = computed(() => mainStore.isStationsLoading);
+
+onMounted(() => {
+	mainStore.getStations();
+});
 </script>
 
 <style lang="less" scoped>
-@import '@/styles/_sizes';
+@import '@/assets/styles/_sizes';
 
 .gotuda {
 	display: flex;
@@ -33,6 +43,14 @@ const isMenuOpen = computed(() => mainStore.isMenuOpen);
 	max-width: 1024px;
 	margin: 0 auto;
 	height: 100%;
+
+	&__loader {
+		flex-grow: 1;
+
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
 
 	&__content {
 		display: flex;

@@ -23,9 +23,9 @@ const links = computed(() => [
 </script>
 
 <style scoped lang="less">
-@import '@/styles/_palette';
-@import '@/styles/_sizes';
-@import '@/styles/_mixins';
+@import '@/assets/styles/_palette';
+@import '@/assets/styles/_sizes';
+@import '@/assets/styles/_mixins';
 
 .sidebar {
 	display: flex;

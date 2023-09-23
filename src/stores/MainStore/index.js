@@ -8,7 +8,7 @@ export const useMainStore = defineStore('mainStore', () => {
 	const isMenuOpen = ref(false);
 
 	const isStationsLoading = ref(false);
-	const stationsRaw = ref({});
+	const lines = ref([]);
 
 	// ACTIONS
 	const getStations = async () => {
@@ -16,7 +16,9 @@ export const useMainStore = defineStore('mainStore', () => {
 
 		const response = await fetch('https://api.hh.ru/metro/1');
 
-		stationsRaw.value = await response.json();
+		const json = await response.json();
+
+		lines.value = json ? json.lines : [];
 
 		isStationsLoading.value = false;
 	};
@@ -25,28 +27,11 @@ export const useMainStore = defineStore('mainStore', () => {
 		isMenuOpen.value = value;
 	};
 
-	// getters: {
-	// 	stations(state) {
-	// 		return (
-	// 			state.lines
-	// 				.reduce((acc, current) => {
-	// 					acc.push(...current.stations);
-	// 					return acc;
-	// 				}, [])
-	// 				.map((station) => ({
-	// 					id: station.id.split('.')[1],
-	// 					name: station.name,
-	// 					latitude: station.lat,
-	// 					longitude: station.lng,
-	// 				}))
-	// 				.sort((a, b) => a.id - b.id) || []
-	// 		);
-	// 	},
-	// },
-
 	return {
 		isAuthorized,
 		isMenuOpen,
+		isStationsLoading,
+		lines,
 		getStations,
 		setMenuState,
 	};

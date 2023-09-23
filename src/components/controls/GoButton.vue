@@ -48,7 +48,7 @@ const clickOnButton = () => {
 </script>
 
 <style lang="less" scoped>
-@import '@/styles/_palette';
+@import '@/assets/styles/_palette';
 
 .button {
 	padding: 0 20px;

@@ -1,12 +1,23 @@
 <template>
 	<header class="header">
-		<GoBurger class="header__burger" color="primary" @change="(state) => setMenuState(state)" />
+		<GoBurger
+			class="header__burger"
+			color="primary"
+			@change="(state) => setMenuState(state)"
+			:disabled="isStationsLoading"
+		/>
 		<nav class="header__nav">
-			<router-link class="header__link" v-for="link of links" :key="link.name" :to="link.href">
+			<router-link
+				class="header__link"
+				:class="{ header__link_disabled: isStationsLoading }"
+				v-for="link of links"
+				:key="link.name"
+				:to="link.href"
+			>
 				{{ link.name }}
 			</router-link>
 		</nav>
-		<GoLangSwitcher class="header__lang-switcher" />
+		<GoLangSwitcher class="header__lang-switcher" :disabled="isStationsLoading" />
 	</header>
 </template>
 
@@ -28,6 +39,7 @@ const links = computed(() => [
 	{ name: t('sections.goTuda'), href: '/' },
 	{ name: t('sections.stations'), href: '/stations' },
 ]);
+const isStationsLoading = computed(() => mainStore.isStationsLoading);
 
 const setMenuState = (value) => {
 	mainStore.setMenuState(value);
@@ -35,9 +47,9 @@ const setMenuState = (value) => {
 </script>
 
 <style scoped lang="less">
-@import '@/styles/_palette';
-@import '@/styles/_sizes';
-@import '@/styles/_mixins';
+@import '@/assets/styles/_palette';
+@import '@/assets/styles/_sizes';
+@import '@/assets/styles/_mixins';
 
 .header {
 	display: flex;
@@ -62,6 +74,11 @@ const setMenuState = (value) => {
 
 	&__link {
 		.nav-link(@primary, @primary-hover);
+
+		&_disabled {
+			opacity: 0.5;
+			pointer-events: none;
+		}
 	}
 
 	&__lang-switcher {

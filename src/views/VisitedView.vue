@@ -1,11 +1,5 @@
 <template>
-	<div>
+	<main>
 		<h1>Посещенные станции</h1>
-	</div>
+	</main>
 </template>
-
-<script setup>
-import { ref, computed } from 'vue';
-</script>
-
-<style scoped lang="less"></style>

@@ -18,7 +18,7 @@ const i18n = createI18n({
 });
 
 // Styles
-import '@/styles/index.less';
+import '@/assets/styles/index.less';
 
 const app = createApp(App, {
 	setup() {

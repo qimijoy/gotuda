@@ -1,77 +1,62 @@
 <template>
-	<span class="loader"></span>
+	<span class="loader" />
 </template>
 
-<script setup></script>
+<style lang="less" scoped>
+@import '@/assets/styles/_palette';
 
-<style scoped lang="less">
 .loader {
-	animation: rotate 1s infinite;
-	height: 50px;
-	width: 50px;
+	width: 48px;
+	height: 48px;
+	border-radius: 50%;
+	display: inline-block;
+	position: relative;
+	border: 3px solid;
+	border-color: @primary-hover @primary-hover transparent transparent;
+	box-sizing: border-box;
+	animation: rotation 1s linear infinite;
 
-	&::before,
-	&::after {
-		border-radius: 50%;
+	&::after,
+	&::before {
 		content: '';
-		display: block;
-		height: 20px;
-		width: 20px;
+		box-sizing: border-box;
+		position: absolute;
+		left: 0;
+		right: 0;
+		top: 0;
+		bottom: 0;
+		margin: auto;
+		border: 3px solid;
+		border-color: transparent transparent @primary-hover @primary-hover;
+		width: 40px;
+		height: 40px;
+		border-radius: 50%;
+		animation: rotationBack 0.5s linear infinite;
+		transform-origin: center center;
 	}
 
 	&::before {
-		animation: ball1 1s infinite;
-		background-color: #fff;
-		box-shadow: 30px 0 0 #ff3d00;
-		margin-bottom: 10px;
-	}
-
-	&::after {
-		animation: ball2 1s infinite;
-		background-color: #ff3d00;
-		box-shadow: 30px 0 0 #fff;
+		width: 32px;
+		height: 32px;
+		border-color: @primary-hover @primary-hover transparent transparent;
+		animation: rotation 1.5s linear infinite;
 	}
 }
 
-@keyframes rotate {
+@keyframes rotation {
 	0% {
-		transform: rotate(0deg) scale(0.8);
-	}
-	50% {
-		transform: rotate(360deg) scale(1.2);
+		transform: rotate(0deg);
 	}
 	100% {
-		transform: rotate(720deg) scale(0.8);
+		transform: rotate(360deg);
 	}
 }
-
-@keyframes ball1 {
+@keyframes rotationBack {
 	0% {
-		box-shadow: 30px 0 0 #ff3d00;
-	}
-	50% {
-		box-shadow: 0 0 0 #ff3d00;
-		margin-bottom: 0;
-		transform: translate(15px, 15px);
+		transform: rotate(0deg);
 	}
 	100% {
-		box-shadow: 30px 0 0 #ff3d00;
-		margin-bottom: 10px;
-	}
-}
-
-@keyframes ball2 {
-	0% {
-		box-shadow: 30px 0 0 #fff;
-	}
-	50% {
-		box-shadow: 0 0 0 #fff;
-		margin-top: -20px;
-		transform: translate(15px, 15px);
-	}
-	100% {
-		box-shadow: 30px 0 0 #fff;
-		margin-top: 0;
+		transform: rotate(-360deg);
 	}
 }
 </style>
