@@ -8,7 +8,7 @@ import svgLoader from 'vite-svg-loader';
 // https://vitejs.dev/config/
 export default defineConfig({
 	plugins: [vue(), svgLoader()],
-	base: process.env.BASE_URL,
+	base: process.env.NODE_ENV === 'production' ? '/gotuda/' : '/',
 	server: {
 		port: 3000,
 	},
