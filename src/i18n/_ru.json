@@ -1,12 +1,20 @@
 {
   "sections": {
-    "home": "Домой",
-    "stations": "Станции",
-    "goTuda": "Го Туда",
-    "visited": "Посещенные"
-  },
-  "goTuda": {
-    "header": "Принцип действия"
+    "home": {
+      "name": "Домой"
+    },
+    "stations": {
+      "name": "Станции",
+      "header-text": "Список станций"
+    },
+    "goTuda": {
+      "name": "Го Туда",
+      "header-text": "Принцип работы"
+    },
+    "visited": {
+      "name": "Посещенные",
+      "header-text": "Посещенные станции"
+    }
   },
   "switchLang": "Переключить язык"
 }

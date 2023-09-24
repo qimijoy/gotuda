@@ -1,67 +1,44 @@
 <template>
 	<main>
-		<h1>Stations</h1>
+		<GoHeaderH1>{{ $t('sections.stations.header-text') }}</GoHeaderH1>
 		<div class="stations-list">
-			<GoButton size="large" @click="rollStation(stations)">Го туда</GoButton>
+			<ul>
+				<li v-for="line of lines" :key="line.id" class="line">
+					<span class="line__info">
+						<span class="line__info-color" :style="{ backgroundColor: `#${line.hex_color}` }" />
+						<span class="line__info-name">{{ line.name }} ветка</span>
+					</span>
 
-			<!--		<div v-if="randomStation" class="random-station">-->
-			<!--			<span>Ты сегодня покатишь на станцию </span>-->
-			<!--			<span class="random-station__choice">{{ randomStation }}</span>-->
-			<!--		</div>-->
-			<!--		<ul>-->
-			<!--			<li v-for="line of lines" :key="line.id" class="line">-->
-			<!--				<span class="line__info">-->
-			<!--					<span class="line__info-color" :style="{ backgroundColor: `#${line.hex_color}` }" />-->
-			<!--					<span class="line__info-name">{{ line.name }} ветка</span>-->
-			<!--				</span>-->
-
-			<!--				<ul class="line__stations">-->
-			<!--					<li v-for="station of line.stations" :key="station.id" class="main__line-station">-->
-			<!--						<p>{{ station.name }}</p>-->
-			<!--					</li>-->
-			<!--				</ul>-->
-			<!--			</li>-->
-			<!--		</ul>-->
+					<ul class="line__stations">
+						<li v-for="station of line.stations" :key="station.id" class="main__line-station">
+							<p>{{ station.name }}</p>
+						</li>
+					</ul>
+				</li>
+			</ul>
 		</div>
 	</main>
 </template>
 
 <script setup>
-import { ref, computed, onMounted } from 'vue';
-
+import { computed } from 'vue';
+import { useI18n } from 'vue-i18n';
 import { useMainStore } from '@/stores/MainStore';
+
+import GoHeaderH1 from '@/components/GoHeaderH1.vue';
 
 // STATES
 const mainStore = useMainStore();
-const randomStation = ref('');
+const { t } = useI18n();
 
-import GoButton from '@/components/controls/GoButton.vue';
-import { randomNumber } from '@/utils/functions';
-
-// Computed
-const lines = computed(() => mainStore.state.lines);
-const stations = computed(() => mainStore.getters.stations);
-
-// FUNCTIONS
-const rollStation = (stations) => {
-	const length = stations.length;
-	if (length === 0) {
-		return null;
-	} else {
-		randomStation.value = stations[randomNumber(0, length - 1)];
-	}
-};
+// COMPUTED
+const lines = computed(() => mainStore.lines);
 </script>
 
 <style lang="less" scoped>
-.random-station {
-	&__choice {
-		background-color: #38ad9e;
-	}
-}
-
 .line {
 	list-style: none;
+
 	&__info {
 		display: flex;
 		flex-direction: row;

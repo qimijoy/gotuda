@@ -1,12 +1,20 @@
 {
   "sections": {
-    "home": "Home",
-    "stations": "Stations",
-    "goTuda": "Go Tuda",
-    "visited": "Visited"
-  },
-  "goTuda": {
-    "header": "Principle of operation"
+    "home": {
+      "name": "Home"
+    },
+    "stations": {
+      "name": "Stations",
+      "header-text": "List of stations"
+    },
+    "goTuda": {
+      "name": "Go Tuda",
+      "header-text": "Principle of operation"
+    },
+    "visited": {
+      "name": "Visited",
+      "header-text": "Visited stations"
+    }
   },
   "switchLang": "Switch lang"
 }

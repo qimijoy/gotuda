@@ -36,8 +36,8 @@ const mainStore = useMainStore();
 
 // Computed
 const links = computed(() => [
-	{ name: t('sections.goTuda'), href: '/' },
-	{ name: t('sections.stations'), href: '/stations' },
+	{ name: t('sections.goTuda.name'), href: '/' },
+	{ name: t('sections.stations.name'), href: '/stations' },
 ]);
 const isStationsLoading = computed(() => mainStore.isStationsLoading);
 const currentRoute = computed(() => mainStore.currentRoute);
@@ -57,6 +57,7 @@ const setMenuState = (value) => {
 	align-items: center;
 
 	height: @header-height;
+	min-height: @header-height;
 	width: 100%;
 
 	background-color: @white;

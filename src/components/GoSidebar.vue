@@ -25,10 +25,7 @@ const { t } = useI18n();
 const mainStore = useMainStore();
 
 // Computed
-const links = computed(() => [
-	{ name: t('sections.visited'), href: '/visited' },
-	{ name: t('sections.home'), href: '/' },
-]);
+const links = computed(() => [{ name: t('sections.visited.name'), href: '/visited' }]);
 const isStationsLoading = computed(() => mainStore.isStationsLoading);
 const currentRoute = computed(() => mainStore.currentRoute);
 </script>
