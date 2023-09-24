@@ -62,6 +62,7 @@ onMounted(() => {
 
 	&__view {
 		padding: 20px 30px;
+		width: 100%;
 	}
 }
 </style>
