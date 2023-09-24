@@ -2,6 +2,8 @@ import { defineStore } from 'pinia';
 import { ref } from 'vue';
 import { useRoute } from 'vue-router';
 
+import { getStationsAPI } from '@/api/stations';
+
 export const useMainStore = defineStore('mainStore', () => {
 	const route = useRoute();
 
@@ -17,15 +19,17 @@ export const useMainStore = defineStore('mainStore', () => {
 
 	// ACTIONS
 	const getStations = async () => {
-		isStationsLoading.value = true;
+		try {
+			isStationsLoading.value = true;
 
-		const response = await fetch('https://api.hh.ru/metro/1');
+			const { data } = await getStationsAPI();
 
-		const json = await response.json();
-
-		lines.value = json ? json.lines : [];
-
-		isStationsLoading.value = false;
+			lines.value = data ? data.lines : [];
+		} catch (error) {
+			console.log(error);
+		} finally {
+			isStationsLoading.value = false;
+		}
 	};
 
 	const setMenuState = (value) => {
