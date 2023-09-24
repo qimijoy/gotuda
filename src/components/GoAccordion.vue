@@ -1,7 +1,13 @@
 <template>
 	<div class="accordion">
 		<div class="accordion__spoilers">
-			<GoSpoiler v-for="item in array" :key="item.id" :data="item" @toggle="(state) => updateAccordion(state)">
+			<GoSpoiler
+				v-for="item of items"
+				:key="item.id"
+				:data="item"
+				:isOpen="item.isOpen"
+				@toggle="(state) => updateAccordion(state)"
+			>
 				<template #summary>{{ item.summary }}</template>
 				<template #content>{{ item.content }}</template>
 			</GoSpoiler>
@@ -16,17 +22,9 @@ import GoSpoiler from './GoSpoiler.vue';
 
 // PROPS
 const props = defineProps({
-	data: {
+	items: {
 		type: Array,
 		required: true,
-		validator: (item) =>
-			item.every(({ id, summary, content }) => {
-				const hasId = id !== undefined && typeof id === 'number';
-				const hasSummary = summary !== undefined && typeof summary === 'string';
-				const hasContent = content !== undefined && typeof content === 'string';
-
-				return hasId && hasSummary && hasContent;
-			}),
 	},
 	multiple: {
 		type: Boolean,

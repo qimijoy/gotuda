@@ -1,21 +1,17 @@
 <template>
 	<div class="spoiler">
-		<div class="spoiler__summary" @click="toggleSpoiler">
+		<div class="spoiler__summary" :class="{ spoiler__summary_open: isOpen }" @click="toggleSpoiler">
 			<div class="spoiler__summary-text">
-				<template v-if="!isSlotSummary">
-					{{ data.summary }}
-				</template>
+				<template v-if="!isSlotSummary">{{ data.summary }}</template>
 
 				<slot v-else name="summary" />
 			</div>
 			<div :class="['spoiler__summary-icon', { 'spoiler__summary-icon_open': isOpen }]">
-				<SpoilerArrowIcon />
+				<SpoilerArrowIcon :class="['spoiler__summary-svg', { 'spoiler__summary-svg_open': isOpen }]" />
 			</div>
 		</div>
 		<div :class="['spoiler__content', { spoiler__content_open: isOpen }]">
-			<template v-if="!isSlotContent">
-				{{ data.content }}
-			</template>
+			<template v-if="!isSlotContent">{{ data.content }}</template>
 
 			<slot v-else name="content" />
 		</div>
@@ -34,21 +30,18 @@ const props = defineProps({
 	data: {
 		type: Object,
 		required: false,
-		validator: ({ id, summary, content }) => {
-			const hasId = id !== undefined && typeof id === 'number';
-			const hasSummary = summary !== undefined && typeof summary === 'string';
-			const hasContent = content !== undefined && typeof content === 'string';
-
-			return hasId && hasSummary && hasContent;
-		},
+	},
+	isOpen: {
+		type: Boolean,
+		default: false,
 	},
 });
 
 // STATES
-const isOpen = ref(props.data.isOpen || false);
+const isOpen = ref(props.isOpen || false);
 
 // COMPUTED
-const isOpenComputed = computed(() => props.data.isOpen);
+const isOpenComputed = computed(() => props.isOpen);
 const isSlotSummary = computed(() => Boolean(slots.summary));
 const isSlotContent = computed(() => Boolean(slots.content));
 
@@ -82,11 +75,23 @@ const emit = defineEmits({
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
-		border: 2px solid @primary;
+		border-width: 2px;
+		border-style: solid;
+		border-color: @primary-hover;
 
 		padding: 6px 6px 6px 20px;
 		border-radius: 6px;
 		cursor: pointer;
+
+		transition: border-color 0.5s;
+
+		&:hover:not(&_open) {
+			border-color: @primary;
+		}
+
+		&_open {
+			border-color: @primary-active;
+		}
 	}
 
 	&__summary-icon {
@@ -97,27 +102,28 @@ const emit = defineEmits({
 		&_open {
 			transform: rotate(180deg);
 		}
+	}
 
-		& svg {
+	&__summary-svg {
+		stroke: @primary-hover;
+		transition: stroke 0.5s;
+		margin-left: 4px;
+
+		&:hover:not(&_open) {
 			stroke: @primary;
+		}
+
+		&_open {
+			stroke: @primary-active;
 		}
 	}
 
 	&__content {
-		&::-webkit-scrollbar {
-			display: none; /* Safari and Chrome */
-		}
-		scrollbar-width: none; /* Firefox */
-
 		height: 0;
-		overflow-y: scroll;
-
-		transition:
-			height 0.5s,
-			padding 0.5s;
+		overflow-y: hidden;
 
 		&_open {
-			height: 200px;
+			height: auto;
 			padding: 10px;
 		}
 	}
