@@ -1,20 +1,16 @@
-.nav-link(@color, @color-hover) {
+.nav-link(@color, @color-hover, @color-active) {
 	padding: 10px;
 	font-weight: bold;
 	text-decoration: none;
 	color: @color;
 	outline: none;
 
-	&:visited {
-		color: @color;
-	}
-
 	&:hover,
-	&:focus {
+	&:focus:not(&_active) {
 		color: @color-hover;
 	}
 
 	&:active {
-		color: @color-hover;
+		color: @color-active;
 	}
 }

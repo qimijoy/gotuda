@@ -7,15 +7,14 @@
 			:disabled="isStationsLoading"
 		/>
 		<nav class="header__nav">
-			<router-link
-				class="header__link"
-				:class="{ header__link_disabled: isStationsLoading }"
+			<GoRouterLink
 				v-for="link of links"
 				:key="link.name"
+				:name="link.name"
 				:to="link.href"
-			>
-				{{ link.name }}
-			</router-link>
+				:disabled="isStationsLoading"
+				:active="link.href === currentRoute.fullPath"
+			/>
 		</nav>
 		<GoLangSwitcher class="header__lang-switcher" :disabled="isStationsLoading" />
 	</header>
@@ -29,6 +28,7 @@ import { useMainStore } from '@/stores/MainStore';
 
 import GoLangSwitcher from '@/components/GoLangSwitcher.vue';
 import GoBurger from '@/components/GoBurger.vue';
+import GoRouterLink from '@/components/GoRouterLink.vue';
 
 // States
 const { t, locale } = useI18n();
@@ -40,13 +40,14 @@ const links = computed(() => [
 	{ name: t('sections.stations'), href: '/stations' },
 ]);
 const isStationsLoading = computed(() => mainStore.isStationsLoading);
+const currentRoute = computed(() => mainStore.currentRoute);
 
 const setMenuState = (value) => {
 	mainStore.setMenuState(value);
 };
 </script>
 
-<style scoped lang="less">
+<style lang="less" scoped>
 @import '@/assets/styles/_palette';
 @import '@/assets/styles/_sizes';
 @import '@/assets/styles/_mixins';
@@ -70,15 +71,6 @@ const setMenuState = (value) => {
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
-	}
-
-	&__link {
-		.nav-link(@primary, @primary-hover);
-
-		&_disabled {
-			opacity: 0.5;
-			pointer-events: none;
-		}
 	}
 
 	&__lang-switcher {

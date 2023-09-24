@@ -1,7 +1,10 @@
 import { defineStore } from 'pinia';
 import { ref } from 'vue';
+import { useRoute } from 'vue-router';
 
 export const useMainStore = defineStore('mainStore', () => {
+	const route = useRoute();
+
 	// STATES
 	const isAuthorized = ref(true); // Пока считаем, что всегда авторизованы
 
@@ -9,6 +12,8 @@ export const useMainStore = defineStore('mainStore', () => {
 
 	const isStationsLoading = ref(false);
 	const lines = ref([]);
+
+	const currentRoute = ref(route);
 
 	// ACTIONS
 	const getStations = async () => {
@@ -32,6 +37,7 @@ export const useMainStore = defineStore('mainStore', () => {
 		isMenuOpen,
 		isStationsLoading,
 		lines,
+		currentRoute,
 		getStations,
 		setMenuState,
 	};

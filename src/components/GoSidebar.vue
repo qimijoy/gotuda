@@ -1,25 +1,36 @@
 <template>
 	<aside class="sidebar">
 		<div class="sidebar__links">
-			<router-link class="sidebar__link" v-for="link of links" :key="link.name" :to="link.href">
-				{{ link.name }}
-			</router-link>
+			<GoRouterLink
+				v-for="link of links"
+				:key="link.name"
+				:name="link.name"
+				:to="link.href"
+				:disabled="isStationsLoading"
+				:active="link.href === currentRoute.fullPath"
+			/>
 		</div>
 	</aside>
 </template>
 
 <script setup>
-import { ref, computed } from 'vue';
+import { computed } from 'vue';
 import { useI18n } from 'vue-i18n';
+import { useMainStore } from '@/stores/MainStore';
+
+import GoRouterLink from '@/components/GoRouterLink.vue';
 
 // States
 const { t } = useI18n();
+const mainStore = useMainStore();
 
 // Computed
 const links = computed(() => [
 	{ name: t('sections.visited'), href: '/visited' },
 	{ name: t('sections.home'), href: '/' },
 ]);
+const isStationsLoading = computed(() => mainStore.isStationsLoading);
+const currentRoute = computed(() => mainStore.currentRoute);
 </script>
 
 <style scoped lang="less">
@@ -55,10 +66,6 @@ const links = computed(() => [
 		display: flex;
 		flex-direction: column;
 		width: 100%;
-	}
-
-	&__link {
-		.nav-link(@primary, @primary-hover);
 	}
 }
 </style>
