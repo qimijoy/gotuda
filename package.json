@@ -4,8 +4,8 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview",
-    "deploy": "gh-pages -d dist",
+    "preview": "npm run build && vite preview",
+    "deploy": "npm run build && gh-pages -d dist",
     "lint": "eslint ./"
   },
   "dependencies": {

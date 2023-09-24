@@ -7,7 +7,7 @@ import VisitedView from '@/views/VisitedView.vue';
 import { useMainStore } from '@/stores/MainStore';
 
 const router = createRouter({
-	history: createWebHistory(),
+	history: createWebHistory(process.env.BASE_URL),
 	routes: [
 		{
 			path: '/auth',
