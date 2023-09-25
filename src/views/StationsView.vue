@@ -33,7 +33,7 @@ const mainStore = useMainStore();
 const { t } = useI18n();
 
 // COMPUTED
-const lines = computed(() => mainStore.lines);
+const lines = computed(() => mainStore.linesRaw);
 </script>
 
 <style lang="less" scoped>
