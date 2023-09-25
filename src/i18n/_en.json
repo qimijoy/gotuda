@@ -9,7 +9,12 @@
     },
     "goTuda": {
       "name": "Go Tuda",
-      "header-text": "Principle of operation"
+      "header-text": "Principle of operation",
+      "instruction-1": "Press the button and get a random Moscow metro station.",
+      "instruction-2": "Go there to hang out and discover new places.",
+      "instruction-3": "Have fun.",
+      "result": "Today you're going to the station",
+      "press-the-button": "...press the button..."
     },
     "visited": {
       "name": "Visited",
