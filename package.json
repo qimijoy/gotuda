@@ -18,12 +18,12 @@
     "vue-router": "^4.2.5"
   },
   "devDependencies": {
-    "@babel/core": "^7.22.20",
+    "@babel/core": "^7.23.0",
     "@babel/eslint-parser": "^7.22.15",
     "@babel/preset-env": "^7.22.20",
-    "@eslint/js": "^8.49.0",
+    "@eslint/js": "^8.50.0",
     "@qimijoy/browserslist-config": "^1.0.7",
-    "@qimijoy/eslint-config": "^1.0.1",
+    "@qimijoy/eslint-config": "^1.0.4",
     "@qimijoy/prettier-config": "^1.0.1",
     "@vitejs/plugin-vue": "^4.3.4",
     "core-js": "^3.32.2",

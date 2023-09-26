@@ -45,9 +45,9 @@ export const useMainStore = defineStore('mainStore', () => {
 		try {
 			isStationsLoading.value = true;
 
-			const { data } = await getStationsAPI();
+			const { data: response } = await getStationsAPI();
 
-			linesRaw.value = data ? data.lines : [];
+			linesRaw.value = response ? response.lines : [];
 		} catch (error) {
 			console.log(error);
 		} finally {

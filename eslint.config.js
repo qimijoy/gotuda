@@ -1,7 +1,7 @@
 const globals = require('globals');
 
 const babelParser = require('@babel/eslint-parser');
-const js = require('@eslint/js');
+const jsESLint = require('@eslint/js');
 const eslintConfig = require('@qimijoy/eslint-config/configs/primary');
 
 const prettier = require('eslint-plugin-prettier');
@@ -38,7 +38,7 @@ module.exports = [
 			},
 		},
 		rules: {
-			...js.configs.recommended.rules,
+			...jsESLint.configs.recommended.rules,
 			...eslintConfig.rules,
 		},
 	},
@@ -61,6 +61,7 @@ module.exports = [
 	// Prettier options (must be last!)
 	{
 		files: ['**/*.js'],
+		ignores: ['**/dist/**/*'],
 		plugins: { prettier },
 		rules: {
 			...prettierConfig.rules,
