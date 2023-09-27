@@ -6,7 +6,8 @@
     "build": "vite build",
     "preview": "npm run build && vite preview",
     "deploy": "npm run build && gh-pages -d dist",
-    "lint": "eslint ./"
+    "lint": "eslint ./",
+    "test": "vitest --dir src/tests"
   },
   "dependencies": {
     "@vuelidate/core": "^2.0.3",
@@ -38,6 +39,7 @@
     "prettier": "3.0.3",
     "vite": "^4.4.9",
     "vite-svg-loader": "^4.0.0",
+    "vitest": "^0.34.5",
     "vue-eslint-parser": "^9.3.1"
   }
 }
