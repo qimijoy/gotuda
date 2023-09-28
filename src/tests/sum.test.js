@@ -1,6 +1,8 @@
 import { expect, test } from 'vitest';
-import { example } from './example';
+import { randomNumber } from '@/utils/functions';
 
-test('adds 1 + 2 to equal 3', () => {
-	expect(example(1, 2)).toBe(3);
-});
+for (let iteration = 0; iteration < 1000; iteration++) {
+	test('Generates random number', () => {
+		expect(randomNumber(0, iteration)).lte(iteration);
+	});
+}
