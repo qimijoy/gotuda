@@ -23,6 +23,7 @@ import '@/assets/styles/index.less';
 const app = createApp(App, {
 	setup() {
 		const { t } = useI18n();
+
 		return { t };
 	},
 });

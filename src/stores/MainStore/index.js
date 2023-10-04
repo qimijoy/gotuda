@@ -27,8 +27,8 @@ export const useMainStore = defineStore('mainStore', () => {
 	);
 
 	const stations = computed(() => {
-		return linesRaw.value.reduce((acc, line) => {
-			const stations = line.stations.map(({ id, name, lat, lng, line }) => ({
+		return linesRaw.value.reduce((acc, lineRaw) => {
+			const stationsFromLine = lineRaw.stations.map(({ id, name, lat, lng, line }) => ({
 				id,
 				name,
 				latitude: lat,
@@ -36,7 +36,8 @@ export const useMainStore = defineStore('mainStore', () => {
 				line: line.id,
 				lineColor: `#${line.hex_color}`,
 			}));
-			return [...acc, ...stations];
+
+			return [...acc, ...stationsFromLine];
 		}, []);
 	});
 
