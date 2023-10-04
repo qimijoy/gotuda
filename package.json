@@ -24,7 +24,7 @@
     "@babel/preset-env": "^7.22.20",
     "@eslint/js": "^8.50.0",
     "@qimijoy/browserslist-config": "^1.0.7",
-    "@qimijoy/eslint-config": "^1.0.7",
+    "@qimijoy/eslint-config": "^1.0.9",
     "@qimijoy/prettier-config": "^1.0.1",
     "@vitejs/plugin-vue": "^4.4.0",
     "core-js": "^3.33.0",
