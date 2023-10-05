@@ -29,7 +29,7 @@ import { useMainStore } from '@/stores/MainStore';
 
 import GoHeaderH1 from '@/components/GoHeaderH1.vue';
 import GoSpoiler from '@/components/GoSpoiler.vue';
-import GoYandexMap from '@/components/GoYandexMap.vue';
+import GoYandexMap from '@/components/YandexMap/GoYandexMap.vue';
 
 // STATES
 const mainStore = useMainStore();
