@@ -17,6 +17,8 @@
 				</template>
 			</GoSpoiler>
 		</div>
+
+		<GoYandexMap />
 	</main>
 </template>
 
@@ -27,6 +29,7 @@ import { useMainStore } from '@/stores/MainStore';
 
 import GoHeaderH1 from '@/components/GoHeaderH1.vue';
 import GoSpoiler from '@/components/GoSpoiler.vue';
+import GoYandexMap from '@/components/GoYandexMap.vue';
 
 // STATES
 const mainStore = useMainStore();
@@ -43,6 +46,7 @@ const lines = computed(() => mainStore.linesRaw);
 	display: grid;
 	grid-template-columns: 1fr;
 	gap: 15px 20px;
+	margin-bottom: 30px;
 
 	@media @small {
 		grid-template-columns: 1fr 1fr;
