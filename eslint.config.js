@@ -1,7 +1,6 @@
 const globals = require('globals');
 
 const babelParser = require('@babel/eslint-parser');
-const jsESLint = require('@eslint/js');
 const eslintConfig = require('@qimijoy/eslint-config/configs/primary');
 
 const prettier = require('eslint-plugin-prettier');
@@ -9,6 +8,7 @@ const prettierConfig = require('eslint-config-prettier');
 
 const vueParser = require('vue-eslint-parser');
 const vue = require('eslint-plugin-vue');
+const vueConfig = require('@qimijoy/eslint-config/configs/vueConfig');
 
 module.exports = [
 	{
@@ -26,7 +26,7 @@ module.exports = [
 	},
 	{
 		files: ['**/*.js'],
-		ignores: ['**/dist/**/*'],
+		ignores: ['**/dist/**'],
 		languageOptions: {
 			ecmaVersion: 'latest',
 			sourceType: 'module',
@@ -38,30 +38,29 @@ module.exports = [
 			},
 		},
 		rules: {
-			...jsESLint.configs.recommended.rules,
 			...eslintConfig.rules,
 		},
 	},
 	// VUE
 	{
 		files: ['**/*.vue'],
+		ignores: ['**/dist/**'],
 		languageOptions: {
 			ecmaVersion: 'latest',
-			parser: vueParser,
+			parser: vueParser, // <template>
 			parserOptions: {
-				parser: babelParser,
+				parser: babelParser, // <script>
 			},
 		},
 		plugins: { vue },
 		rules: {
-			...vue.configs.essential.rules,
-			'vue/no-v-model-argument': 0,
+			...vueConfig.rules,
 		},
 	},
 	// Prettier options (must be last!)
 	{
 		files: ['**/*.js'],
-		ignores: ['**/dist/**/*'],
+		ignores: ['**/dist/**'],
 		plugins: { prettier },
 		rules: {
 			...prettierConfig.rules,
