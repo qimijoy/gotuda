@@ -3,10 +3,10 @@
 <template>
 	<label class="checkbox">
 		<input
+			:id="id"
 			type="checkbox"
 			class="checkbox__input"
 			:name="name"
-			:id="id"
 			:value="value"
 			:checked="checked"
 			:disabled="disabled"
@@ -48,7 +48,10 @@ const props = defineProps({
 	},
 });
 
-const emit = defineEmits(['update:checked', 'updateCheckboxGroup']);
+const emit = defineEmits({
+	'update:checked': (value) => true,
+	updateCheckboxGroup: (value) => true,
+});
 
 const handleClick = (event) => {
 	if (props.group) {

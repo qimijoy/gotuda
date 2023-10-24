@@ -21,15 +21,11 @@
 <script setup>
 import { ref, computed, watch, useSlots } from 'vue';
 
-const slots = useSlots();
-
-import SpoilerArrowIcon from '@/assets/images/icons/SpoilerArrowIcon.svg';
-
 // PROPS
 const props = defineProps({
 	data: {
 		type: Object,
-		required: false,
+		default: () => {},
 	},
 	isOpen: {
 		type: Boolean,
@@ -37,10 +33,19 @@ const props = defineProps({
 	},
 });
 
-// STATES
-const isOpen = ref(props.isOpen || false);
+// EMITS
+const emit = defineEmits({
+	toggle: (state) => {
+		return state.id !== undefined && state.value !== undefined;
+	},
+});
+
+const slots = useSlots();
+
+import SpoilerArrowIcon from '@/assets/images/icons/SpoilerArrowIcon.svg';
 
 // COMPUTED
+const isOpen = computed(() => props.isOpen);
 const isOpenComputed = computed(() => props.isOpen);
 const isSlotSummary = computed(() => Boolean(slots.summary));
 const isSlotContent = computed(() => Boolean(slots.content));
@@ -57,13 +62,6 @@ const toggleSpoiler = () => {
 // WATCHERS
 watch(isOpenComputed, (newValue) => {
 	isOpen.value = newValue;
-});
-
-// EMITS
-const emit = defineEmits({
-	toggle: (state) => {
-		return state.id !== undefined && state.value !== undefined;
-	},
 });
 </script>
 

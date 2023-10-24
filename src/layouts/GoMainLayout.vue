@@ -2,12 +2,12 @@
 	<div class="gotuda">
 		<GoHeader />
 
-		<div class="gotuda__loader" v-if="isStationsLoading">
+		<div v-if="isStationsLoading" class="gotuda__loader">
 			<GoLoader />
 		</div>
 
 		<div v-else class="gotuda__content">
-			<GoSidebar class="gotuda__sidebar" v-if="isMenuOpen" />
+			<GoSidebar v-if="isMenuOpen" class="gotuda__sidebar" />
 
 			<RouterView class="gotuda__view" :class="{ gotuda__view_expanded: !isMenuOpen }" />
 		</div>

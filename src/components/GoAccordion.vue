@@ -16,7 +16,7 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 
 import GoSpoiler from './GoSpoiler.vue';
 
@@ -33,7 +33,7 @@ const props = defineProps({
 });
 
 // STATES
-const array = ref(props.data);
+const array = computed(() => props.items);
 
 // FUNCTIONS
 const updateAccordion = (state) => {

@@ -8,9 +8,11 @@
 const props = defineProps({
 	columnTemplates: {
 		type: String,
+		default: '',
 	},
 	rowBackgroundColor: {
 		type: String,
+		default: '',
 	},
 });
 </script>

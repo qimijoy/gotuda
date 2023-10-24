@@ -1,10 +1,10 @@
 <template>
 	<label class="radiobutton">
 		<input
+			:id="id"
 			type="radio"
 			class="radiobutton__input"
 			:name="name"
-			:id="id"
 			:value="value"
 			:checked="checked"
 			:disabled="disabled"
@@ -13,6 +13,7 @@
 		<span class="radiobutton__span">{{ label }}</span>
 	</label>
 </template>
+
 <script setup>
 const props = defineProps({
 	name: {
@@ -39,13 +40,11 @@ const props = defineProps({
 		type: Boolean,
 		default: false,
 	},
-	group: {
-		type: Boolean,
-		default: false,
-	},
 });
 
-const emit = defineEmits(['update:checked']);
+const emit = defineEmits({
+	'update:checkedValue': (value) => true,
+});
 
 const handleClick = (event) => {
 	emit('update:checkedValue', event.target.value);
@@ -53,7 +52,7 @@ const handleClick = (event) => {
 </script>
 
 <style scoped lang="less">
-@import 'palette';
+@import '@/assets/styles/_palette';
 
 .radiobutton {
 	display: inline-flex;

@@ -28,6 +28,10 @@ const props = defineProps({
 	},
 });
 
+const emit = defineEmits({
+	click: () => true,
+});
+
 const classes = computed(() => {
 	return [
 		'button',
@@ -38,12 +42,8 @@ const classes = computed(() => {
 	];
 });
 
-const emits = defineEmits({
-	click: null,
-});
-
 const clickOnButton = () => {
-	emits('click');
+	emit('click');
 };
 </script>
 

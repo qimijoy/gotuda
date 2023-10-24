@@ -3,8 +3,8 @@
 		<GoBurger
 			class="header__burger"
 			color="primary"
-			@change="(state) => setMenuState(state)"
 			:disabled="isStationsLoading"
+			@change="(state) => setMenuState(state)"
 		/>
 		<nav class="header__nav">
 			<GoRouterLink

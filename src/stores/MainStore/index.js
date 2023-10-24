@@ -50,7 +50,7 @@ export const useMainStore = defineStore('mainStore', () => {
 
 			linesRaw.value = response ? response.lines : [];
 		} catch (error) {
-			console.log(error);
+			console.error(error);
 		} finally {
 			isStationsLoading.value = false;
 		}

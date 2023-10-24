@@ -3,10 +3,10 @@
 <template>
 	<span :class="classes">
 		<GoCheckbox
-			class="checkbox-group__item"
 			v-for="option of options"
-			:key="option.id"
 			:id="option.id"
+			:key="option.id"
+			class="checkbox-group__item"
 			:label="option.name"
 			:value="option.name"
 			:checked="value.includes(option.name)"
@@ -25,10 +25,6 @@ const props = defineProps({
 		type: Array,
 		required: true,
 	},
-	name: {
-		type: String,
-		required: true,
-	},
 	direction: {
 		type: String,
 		default: 'horizontal',
@@ -40,7 +36,9 @@ const props = defineProps({
 	},
 });
 
-const emit = defineEmits(['update:value']);
+const emit = defineEmits({
+	'update:value': (value) => true,
+});
 
 const classes = computed(() => {
 	return ['checkbox-group', `checkbox-group_direction-${props.direction}`];

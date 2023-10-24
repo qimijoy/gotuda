@@ -10,15 +10,19 @@
 const props = defineProps({
 	isImage: {
 		type: Boolean,
+		default: false,
 	},
 	srcImage: {
 		type: String,
+		default: '',
 	},
 	altImage: {
 		type: String,
+		default: '',
 	},
 	columnTitle: {
 		type: String,
+		default: '',
 	},
 });
 </script>

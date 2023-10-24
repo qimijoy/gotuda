@@ -3,10 +3,10 @@
 <template>
 	<label class="input" :style="{ width }">
 		<input
+			:id="name"
 			class="input__control"
 			:type="type"
 			:name="name"
-			:id="name"
 			:placeholder="placeholder"
 			:value="value"
 			@input="updateValue"
@@ -49,19 +49,22 @@ const props = defineProps({
 		default: '300px',
 	},
 	errors: {
-		type: [Array],
+		type: Array,
+		default: () => [],
 	},
 });
 
-const emits = defineEmits(['update:value']);
+const emit = defineEmits({
+	'update:value': (value) => true,
+});
 
 const updateValue = (event) => {
-	emits('update:value', event.target.value);
+	emit('update:value', event.target.value);
 };
 </script>
 
 <style scoped lang="less">
-@import 'palette';
+@import '@/assets/styles/_palette';
 
 .input {
 	position: relative;

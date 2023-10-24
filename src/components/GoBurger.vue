@@ -1,5 +1,5 @@
 <template>
-	<div :class="classes" @click="toggleBurger()" @keydown.enter="toggleBurger()" tabindex="0" ref="burger">
+	<div ref="burger" :class="classes" tabindex="0" @click="toggleBurger()" @keydown.enter="toggleBurger()">
 		<span :class="barClasses(1)"></span>
 		<span :class="barClasses(2)"></span>
 		<span :class="barClasses(3)"></span>
@@ -27,15 +27,15 @@ const props = defineProps({
 });
 
 // EMITS
-const emits = defineEmits({
+const emit = defineEmits({
 	change: (value) => typeof value === 'boolean',
 });
 
 // STATES
 const burger = ref(null);
-const isBurgerOpen = ref(props.state);
 
 // COMPUTED
+const isBurgerOpen = computed(() => props.state);
 const classes = computed(() => {
 	return ['burger', props.disabled ? 'burger_disabled' : null, `burger_color-${props.color}`];
 });
@@ -53,7 +53,7 @@ const barClasses = (index) => [
 const toggleBurger = () => {
 	if (!burger.value.classList.contains('burger_disabled')) {
 		isBurgerOpen.value = !isBurgerOpen.value;
-		emits('change', isBurgerOpen.value);
+		emit('change', isBurgerOpen.value);
 	}
 };
 </script>

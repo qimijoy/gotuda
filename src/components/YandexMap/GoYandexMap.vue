@@ -15,6 +15,7 @@
 		>
 		</YandexMarker>
 	</YandexMap>
+	<div v-else></div>
 </template>
 
 <script setup>

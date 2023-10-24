@@ -13,9 +13,9 @@
 					<span v-if="randomStation === ''" class="random-station__press-the-button">
 						{{ $t('sections.goTuda.press-the-button') }}
 					</span>
-					<span v-else class="random-station__choice" :style="{ backgroundColor: randomStation.lineColor }">{{
-						randomStation.name
-					}}</span>
+					<span v-else class="random-station__choice" :style="{ backgroundColor: randomStation.lineColor }">
+						{{ randomStation.name }}
+					</span>
 				</li>
 			</ol>
 			<div>

@@ -22,25 +22,27 @@ const props = defineProps({
 	tabs: {
 		type: Array,
 		require: true,
+		default: () => [],
 	},
 	selectedTab: {
 		type: String,
+		default: '',
 	},
 });
 
 // Emits
-const emits = defineEmits({
+const emit = defineEmits({
 	changeTab: (tabName) => !!tabName,
 });
 
 // Functions
 const clickOnTab = (tabName) => {
-	emits('changeTab', tabName);
+	emit('changeTab', tabName);
 };
 </script>
 
 <style scoped lang="less">
-@import 'palette';
+@import '@/assets/styles/_palette';
 
 .tabs {
 	&__nav {
