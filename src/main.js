@@ -19,6 +19,7 @@ const i18n = createI18n({
 
 // Styles
 import '@/assets/styles/index.less';
+import '@qimijoy/vue-storybook/dist/style.css';
 
 const app = createApp(App, {
 	setup() {

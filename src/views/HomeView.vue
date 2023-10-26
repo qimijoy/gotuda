@@ -19,7 +19,7 @@
 				</li>
 			</ol>
 			<div>
-				<GoButton class="gotuda__button" @click="rollStation(stations)">Го туда</GoButton>
+				<QButton class="gotuda__button" @click="rollStation(stations)">Го туда</QButton>
 			</div>
 		</div>
 	</main>
@@ -32,7 +32,8 @@ import { useMainStore } from '@/stores/MainStore';
 
 import { randomNumber } from '@/utils/functions';
 
-import GoButton from '@/components/controls/GoButton.vue';
+import { QButton } from '@qimijoy/vue-storybook';
+
 import GoHeaderH1 from '@/components/GoHeaderH1.vue';
 
 // STATES

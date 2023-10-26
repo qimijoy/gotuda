@@ -1,13 +1,13 @@
 <template>
-	<GoButton class="lang-switcher" :disabled="disabled" icon @click="switchLang">
+	<QButton class="lang-switcher" :disabled="disabled" @click="switchLang">
 		<LangSwitcherIcon />
-	</GoButton>
+	</QButton>
 </template>
 
 <script setup>
 import { useI18n } from 'vue-i18n';
 
-import GoButton from '@/components/controls/GoButton.vue';
+import { QButton } from '@qimijoy/vue-storybook';
 import LangSwitcherIcon from '@/assets/images/icons/LangSwitcherIcon.svg';
 
 const props = defineProps({
