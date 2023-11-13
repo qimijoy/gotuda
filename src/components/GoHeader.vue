@@ -17,7 +17,6 @@
 import { computed } from 'vue';
 import { useMainStore } from '@/stores/MainStore';
 
-import GoBurger from '@/components/GoBurger.vue';
 import GoRouterLink from '@/components/GoRouterLink.vue';
 
 const mainStore = useMainStore();
@@ -29,11 +28,6 @@ const links = computed(() => [
 ]);
 const isStationsLoading = computed(() => mainStore.isStationsLoading);
 const currentRoute = computed(() => mainStore.currentRoute);
-
-// FUNCTIONS
-const setMenuState = (value) => {
-	mainStore.setMenuState(value);
-};
 </script>
 
 <style lang="less" scoped>

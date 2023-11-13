@@ -1,20 +1,24 @@
 <template>
 	<!-- Тут лайфхак для совместимости с script setup	-->
 	<YandexMap v-if="showMap" :coordinates="coordinates" :detailed-controls="detailedControls" :settings="settings">
-		<YandexMarker
-			v-for="station of stations"
-			:key="station.id"
-			:marker-id="station.id"
-			type="Point"
-			:coordinates="[station.latitude, station.longitude]"
-			:properties="{
-				hintContent: station.name,
-			}"
-			:options="{}"
-			@click="onClickMarker(station)"
-		>
-		</YandexMarker>
+		<YandexClusterer :options="{ preset: 'islands#blueClusterIcons' }">
+			<YandexMarker
+				v-for="station of stations"
+				:key="station.id"
+				:coordinates="[station.latitude, station.longitude]"
+				:marker-id="station.id"
+				type="Point"
+				:properties="{
+					hintContent: station.name,
+				}"
+				:options="{
+					preset: getPreset(station.line), // Устанавливаем цвет метки балуна
+				}"
+			>
+			</YandexMarker>
+		</YandexClusterer>
 	</YandexMap>
+
 	<div v-else></div>
 </template>
 
@@ -22,8 +26,8 @@
 import { ref, computed, onMounted, shallowRef } from 'vue';
 import { useMainStore } from '@/stores/MainStore';
 
-import { YandexMap, YandexMarker } from 'vue-yandex-maps';
-import { coordinates, detailedControls, settings } from './settings';
+import { YandexMap, YandexMarker, YandexClusterer } from 'vue-yandex-maps';
+import { coordinates, detailedControls, settings, YandexMapPreset2LineId } from './settings';
 
 const mainStore = useMainStore();
 
@@ -37,8 +41,8 @@ onMounted(() => {
 });
 
 // FUNCTIONS
-const onClickMarker = (station) => {
-	console.log(station);
+const getPreset = (lineid) => {
+	return YandexMapPreset2LineId.find((item) => item.lineId === lineid)?.YandexMapPresetName;
 };
 </script>
 
