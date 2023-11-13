@@ -2,6 +2,8 @@
 	<main>
 		<GoHeaderH1>Список станций</GoHeaderH1>
 
+		<GoYandexMap class="stations-map" />
+
 		<div class="lines">
 			<GoSpoiler v-for="line of lines" :key="line.id" :data="line" class="line">
 				<template #summary>
@@ -17,8 +19,6 @@
 				</template>
 			</GoSpoiler>
 		</div>
-
-		<GoYandexMap />
 	</main>
 </template>
 
@@ -69,6 +69,10 @@ const lines = computed(() => mainStore.linesRaw);
 
 		border-radius: 6px;
 	}
+}
+
+.stations-map {
+	margin-bottom: 20px;
 }
 
 .stations {
