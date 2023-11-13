@@ -1,7 +1,6 @@
 # gotuda
 
-The description will be later.
-
+An application for finding interesting places near metro stations in Moscow. Click on the button and get a random station where to go.
 
 ## Project Setup
 
@@ -26,6 +25,12 @@ npm run build
 
 ```sh
 npm run lint
+```
+
+### Lint with Stylelint
+
+```sh
+npm run stylelint
 ```
 
 ### Deploy to GitHub Pages
