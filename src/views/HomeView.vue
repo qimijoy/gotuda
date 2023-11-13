@@ -2,22 +2,24 @@
 	<main>
 		<GoHeaderH1>Принцип работы</GoHeaderH1>
 
-		<div class="gotuda__action">
-			<ol class="gotuda__instruction">
-				<li class="gotuda__instruction-item">Тыкаешь на кнопку и получаешь рандомную станцию метро Москвы.</li>
-				<li class="gotuda__instruction-item">Едешь туда тусить и открывать новые места.</li>
-				<li class="gotuda__instruction-item">Кайфуешь</li>
-				<li class="gotuda__instruction-item">
+		<div class="main">
+			<ol class="main__instruction">
+				<li class="main__instruction-item">Тыкаешь на кнопку и получаешь рандомную станцию метро Москвы.</li>
+				<li class="main__instruction-item">Едешь туда тусить и открывать новые места.</li>
+				<li class="main__instruction-item">Кайфуешь</li>
+				<li class="main__instruction-item">
 					Ты сегодня покатишь на станцию
 
-					<span v-if="randomStation === ''" class="random-station__press-the-button">...нажмите на кнопку...</span>
-					<span v-else class="random-station__choice" :style="{ backgroundColor: randomStation.lineColor }">
-						{{ randomStation.name }}
+					<span class="random-station">
+						<span v-if="randomStation === ''" class="random-station__press-the-button">...нажмите на кнопку...</span>
+						<span v-else class="random-station__choice" :style="{ backgroundColor: randomStation.lineColor }">
+							{{ randomStation.name }}
+						</span>
 					</span>
 				</li>
 			</ol>
 			<div>
-				<QButton class="gotuda__button" @click="rollStation(stations)">Го туда</QButton>
+				<QButton class="main__button" @click="rollStation(stations)">Го туда</QButton>
 			</div>
 		</div>
 	</main>
@@ -27,15 +29,15 @@
 import { ref, computed } from 'vue';
 import { useMainStore } from '@/stores/MainStore';
 
-import { randomNumber } from '@/utils/functions';
-
+import GoHeaderH1 from '@/components/GoHeaderH1.vue';
 import { QButton } from '@qimijoy/vue-storybook';
 
-import GoHeaderH1 from '@/components/GoHeaderH1.vue';
+import { randomNumber } from '@/utils/functions';
+
+const mainStore = useMainStore();
 
 // STATES
-const mainStore = useMainStore();
-const randomStation = ref({});
+const randomStation = ref('');
 
 // COMPUTED
 const stations = computed(() => mainStore.stations);
@@ -54,7 +56,7 @@ const rollStation = (stations) => {
 <style lang="less" scoped>
 @import '@/assets/styles/_breakpoints';
 
-.gotuda {
+.main {
 	&__action {
 		display: grid;
 		grid-template-columns: 1fr;
@@ -64,6 +66,7 @@ const rollStation = (stations) => {
 			grid-template-columns: 2fr 1fr;
 		}
 	}
+
 	&__instruction {
 		list-style-type: none;
 		counter-reset: num;
@@ -91,6 +94,7 @@ const rollStation = (stations) => {
 
 	&__button {
 		width: 100%;
+		margin-top: 20px;
 	}
 }
 

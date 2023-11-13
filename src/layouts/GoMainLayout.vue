@@ -19,11 +19,9 @@ import { useMainStore } from '@/stores/MainStore';
 import GoHeader from '@/components/GoHeader.vue';
 import GoLoader from '@/components/GoLoader.vue';
 
-// STATES
 const mainStore = useMainStore();
 
 // COMPUTED
-const isMenuOpen = computed(() => mainStore.isMenuOpen);
 const isStationsLoading = computed(() => mainStore.isStationsLoading);
 
 onMounted(() => {
@@ -55,8 +53,6 @@ onMounted(() => {
 		flex-direction: row;
 
 		margin-top: 1px;
-
-		flex-grow: 1;
 	}
 
 	&__view {

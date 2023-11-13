@@ -10,8 +10,6 @@ export const useMainStore = defineStore('mainStore', () => {
 	// STATES
 	const isAuthorized = ref(true); // Пока считаем, что всегда авторизованы
 
-	const isMenuOpen = ref(false);
-
 	const isStationsLoading = ref(false);
 	const linesRaw = ref([]);
 
@@ -56,19 +54,13 @@ export const useMainStore = defineStore('mainStore', () => {
 		}
 	};
 
-	const setMenuState = (value) => {
-		isMenuOpen.value = value;
-	};
-
 	return {
 		isAuthorized,
-		isMenuOpen,
 		isStationsLoading,
 		linesRaw,
 		lines,
 		stations,
 		currentRoute,
 		getStations,
-		setMenuState,
 	};
 });
