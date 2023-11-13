@@ -1,7 +1,5 @@
 <template>
-	<router-link :class="classes" :to="to">
-		{{ name }}
-	</router-link>
+	<router-link :class="classes" :to="to">{{ name }}</router-link>
 </template>
 
 <script setup>

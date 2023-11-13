@@ -1,6 +1,6 @@
 <template>
 	<main>
-		<GoHeaderH1>{{ $t('sections.stations.header-text') }}</GoHeaderH1>
+		<GoHeaderH1>Список станций</GoHeaderH1>
 
 		<div class="lines">
 			<GoSpoiler v-for="line of lines" :key="line.id" :data="line" class="line">
@@ -24,16 +24,13 @@
 
 <script setup>
 import { computed } from 'vue';
-import { useI18n } from 'vue-i18n';
 import { useMainStore } from '@/stores/MainStore';
 
 import GoHeaderH1 from '@/components/GoHeaderH1.vue';
 import GoSpoiler from '@/components/GoSpoiler.vue';
 import GoYandexMap from '@/components/YandexMap/GoYandexMap.vue';
 
-// STATES
 const mainStore = useMainStore();
-const { t } = useI18n();
 
 // COMPUTED
 const lines = computed(() => mainStore.linesRaw);
@@ -46,6 +43,7 @@ const lines = computed(() => mainStore.linesRaw);
 	display: grid;
 	grid-template-columns: 1fr;
 	gap: 15px 20px;
+
 	margin-bottom: 30px;
 
 	@media @small {
@@ -68,6 +66,7 @@ const lines = computed(() => mainStore.linesRaw);
 		width: 15px;
 		height: 15px;
 		margin-right: 10px;
+
 		border-radius: 6px;
 	}
 }

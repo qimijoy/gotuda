@@ -9,7 +9,6 @@
 <script setup>
 import { computed, ref } from 'vue';
 
-// PROPS
 const props = defineProps({
 	color: {
 		type: String,
@@ -26,7 +25,6 @@ const props = defineProps({
 	},
 });
 
-// EMITS
 const emit = defineEmits({
 	change: (value) => typeof value === 'boolean',
 });
@@ -40,6 +38,7 @@ const classes = computed(() => {
 	return ['burger', props.disabled ? 'burger_disabled' : null, `burger_color-${props.color}`];
 });
 
+// FUNCTIONS
 const barClasses = (index) => [
 	'burger__bar',
 	`burger__bar_part-${index}`,
@@ -49,7 +48,6 @@ const barClasses = (index) => [
 	},
 ];
 
-// FUNCTIONS
 const toggleBurger = () => {
 	if (!burger.value.classList.contains('burger_disabled')) {
 		isBurgerOpen.value = !isBurgerOpen.value;
@@ -62,14 +60,16 @@ const toggleBurger = () => {
 @import '@/assets/styles/_palette';
 
 .burger {
+	display: block;
+
 	position: relative;
 
-	display: block;
-	height: 32px;
 	width: 32px;
+	height: 32px;
+
+	border-radius: 25%;
 
 	cursor: pointer;
-	border-radius: 25%;
 
 	&_disabled {
 		opacity: 0.5;
@@ -107,6 +107,7 @@ const toggleBurger = () => {
 
 		&_open&_part-2 {
 			transform: rotate(-180deg);
+
 			opacity: 0;
 		}
 

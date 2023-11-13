@@ -6,39 +6,49 @@
 @import '@/assets/styles/_palette';
 
 .loader {
+	display: inline-block;
+
+	position: relative;
+
 	width: 48px;
 	height: 48px;
-	border-radius: 50%;
-	display: inline-block;
-	position: relative;
-	border: 3px solid;
-	border-color: @primary-hover @primary-hover transparent transparent;
-	box-sizing: border-box;
-	animation: rotation 1s linear infinite;
 
-	&::after,
-	&::before {
-		content: '';
-		box-sizing: border-box;
+	border: 3px solid;
+	border-radius: 50%;
+
+	box-sizing: border-box;
+
+	animation: rotation 1s linear infinite;
+	border-color: @primary-hover @primary-hover transparent transparent;
+
+	&:after,
+	&:before {
 		position: absolute;
-		left: 0;
-		right: 0;
 		top: 0;
+		right: 0;
 		bottom: 0;
-		margin: auto;
-		border: 3px solid;
-		border-color: transparent transparent @primary-hover @primary-hover;
+		left: 0;
+
 		width: 40px;
 		height: 40px;
+		margin: auto;
+
+		border: 3px solid;
 		border-radius: 50%;
+
+		box-sizing: border-box;
+
 		animation: rotationBack 0.5s linear infinite;
+		content: '';
+		border-color: transparent transparent @primary-hover @primary-hover;
 		transform-origin: center center;
 	}
 
-	&::before {
+	&:before {
 		width: 32px;
 		height: 32px;
 		border-color: @primary-hover @primary-hover transparent transparent;
+
 		animation: rotation 1.5s linear infinite;
 	}
 }

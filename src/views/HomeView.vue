@@ -1,18 +1,16 @@
 <template>
 	<main>
-		<GoHeaderH1>{{ $t('sections.goTuda.header-text') }}</GoHeaderH1>
+		<GoHeaderH1>Принцип работы</GoHeaderH1>
 
 		<div class="gotuda__action">
 			<ol class="gotuda__instruction">
-				<li class="gotuda__instruction-item">{{ $t('sections.goTuda.instruction-1') }}</li>
-				<li class="gotuda__instruction-item">{{ $t('sections.goTuda.instruction-2') }}</li>
-				<li class="gotuda__instruction-item">{{ $t('sections.goTuda.instruction-3') }}</li>
+				<li class="gotuda__instruction-item">Тыкаешь на кнопку и получаешь рандомную станцию метро Москвы.</li>
+				<li class="gotuda__instruction-item">Едешь туда тусить и открывать новые места.</li>
+				<li class="gotuda__instruction-item">Кайфуешь</li>
 				<li class="gotuda__instruction-item">
-					{{ $t('sections.goTuda.result') }}
+					Ты сегодня покатишь на станцию
 
-					<span v-if="randomStation === ''" class="random-station__press-the-button">
-						{{ $t('sections.goTuda.press-the-button') }}
-					</span>
+					<span v-if="randomStation === ''" class="random-station__press-the-button">...нажмите на кнопку...</span>
 					<span v-else class="random-station__choice" :style="{ backgroundColor: randomStation.lineColor }">
 						{{ randomStation.name }}
 					</span>
@@ -27,7 +25,6 @@
 
 <script setup>
 import { ref, computed } from 'vue';
-import { useI18n } from 'vue-i18n';
 import { useMainStore } from '@/stores/MainStore';
 
 import { randomNumber } from '@/utils/functions';
@@ -37,7 +34,6 @@ import { QButton } from '@qimijoy/vue-storybook';
 import GoHeaderH1 from '@/components/GoHeaderH1.vue';
 
 // STATES
-const { t } = useI18n();
 const mainStore = useMainStore();
 const randomStation = ref({});
 
@@ -71,21 +67,24 @@ const rollStation = (stations) => {
 	&__instruction {
 		list-style-type: none;
 		counter-reset: num;
+
 		margin-left: 20px;
 	}
 
 	&__instruction-item {
 		position: relative;
+
 		margin-bottom: 10px;
 
-		&:not(:last-child)::before {
-			content: counter(num) '.';
-			counter-increment: num;
-			position: absolute;
+		&:last-child {
 			left: -20px;
 		}
 
-		&:last-child {
+		&:not(:last-child):before {
+			content: counter(num) '.';
+			counter-increment: num;
+
+			position: absolute;
 			left: -20px;
 		}
 	}
@@ -97,13 +96,14 @@ const rollStation = (stations) => {
 
 .random-station {
 	&__press-the-button {
-		font-style: italic;
 		font-size: 0.8rem;
+		font-style: italic;
 	}
 
 	&__choice {
-		border-radius: 5px;
 		padding: 4px;
+
+		border-radius: 5px;
 	}
 }
 </style>

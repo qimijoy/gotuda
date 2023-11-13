@@ -78,7 +78,9 @@ watch(isOpenComputed, (newValue) => {
 		border-color: @primary-hover;
 
 		padding: 6px 6px 6px 20px;
+
 		border-radius: 6px;
+
 		cursor: pointer;
 
 		transition: border-color 0.5s;
@@ -95,6 +97,7 @@ watch(isOpenComputed, (newValue) => {
 	&__summary-icon {
 		width: 30px;
 		height: 30px;
+
 		transition: transform 0.5s;
 
 		&_open {
@@ -103,9 +106,10 @@ watch(isOpenComputed, (newValue) => {
 	}
 
 	&__summary-svg {
-		stroke: @primary-hover;
-		transition: stroke 0.5s;
 		margin-left: 4px;
+
+		transition: stroke 0.5s;
+		stroke: @primary-hover;
 
 		&:hover:not(&_open) {
 			stroke: @primary;

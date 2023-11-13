@@ -4,33 +4,15 @@ import router from '@/router';
 
 // Pinia
 import { createPinia } from 'pinia';
-
-// i18n
-import { createI18n, useI18n } from 'vue-i18n';
-import { languages, defaultLocale } from '@/i18n';
-const localStorageLang = localStorage.getItem('lang');
-
-const i18n = createI18n({
-	legacy: false, // Composition API
-	fallbackLocale: defaultLocale,
-	locale: localStorageLang || defaultLocale,
-	messages: Object.assign(languages),
-});
+const Pinia = createPinia();
 
 // Styles
 import '@/assets/styles/index.less';
 import '@qimijoy/vue-storybook/dist/style.css';
 
-const app = createApp(App, {
-	setup() {
-		const { t } = useI18n();
-
-		return { t };
-	},
-});
+const app = createApp(App);
 
 app.use(router);
-app.use(createPinia());
-app.use(i18n);
+app.use(Pinia);
 
 app.mount('#gotuda');

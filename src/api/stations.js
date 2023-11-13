@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export const getStationsAPI = () => {
+export const getStationsAPI = (cityId = 1) => {
 	// 1 - Москва
-	return axios.get('https://api.hh.ru/metro/1');
+	return axios.get(`https://api.hh.ru/metro/${cityId}`);
 };
