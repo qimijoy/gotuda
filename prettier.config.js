@@ -1,5 +1,5 @@
-const primaryConfig = require('@qimijoy/prettier-config/configs/primary');
+import primaryConfig from '@qimijoy/prettier-config/configs/primary.js';
 
-module.exports = {
+export default {
 	...primaryConfig,
 };

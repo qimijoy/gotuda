@@ -1,72 +1,84 @@
-const globals = require('globals');
+import globals from 'globals';
 
-const babelParser = require('@babel/eslint-parser');
-const eslintConfig = require('@qimijoy/eslint-config/configs/primary');
+import js from '@eslint/js';
+import jsdoc from 'eslint-plugin-jsdoc';
 
-const prettier = require('eslint-plugin-prettier');
-const prettierConfig = require('eslint-config-prettier');
+import tsESlint from 'typescript-eslint';
 
-const vueParser = require('vue-eslint-parser');
-const vue = require('eslint-plugin-vue');
-const vueConfig = require('@qimijoy/eslint-config/configs/vueConfig');
+import pluginVue from 'eslint-plugin-vue';
 
-module.exports = [
+import babelParser from '@babel/eslint-parser';
+
+import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended';
+
+export default [
+	// GLOBAL IGNORES
 	{
-		linterOptions: {
-			noInlineConfig: true,
-			reportUnusedDisableDirectives: true,
-		},
+		ignores: ['**/dist/*'],
+	},
+	// FILES TO LINT
+	{
+		files: ['**/*.{js,mjs,cjs,ts,vue}'],
+	},
+	// GLOBAL LANGUAGE & LINTER SETTINGS
+	{
 		languageOptions: {
+			ecmaVersion: 'latest',
 			globals: {
 				...globals.browser,
 				...globals.node,
-				...globals.es2021,
+				...globals.es2022,
 			},
 		},
+		linterOptions: {
+			noInlineConfig: true,
+			reportUnusedDisableDirectives: 'error',
+		},
 	},
+
+	js.configs.recommended,
+	jsdoc.configs['flat/recommended'],
+	jsdoc.configs['flat/recommended-typescript'],
 	{
-		files: ['**/*.js'],
-		ignores: ['**/dist/**'],
+		name: 'JS',
+		files: ['**/*.{js,mjs,cjs,ts,vue}'],
+		plugins: {
+			jsdoc,
+		},
 		languageOptions: {
-			ecmaVersion: 'latest',
-			sourceType: 'module',
 			parser: babelParser,
-			parserOptions: {
-				babelOptions: {
-					presets: ['@babel/preset-env'],
-				},
-			},
 		},
 		rules: {
-			...eslintConfig.rules,
+			...js.configs.recommended.rules,
+			...jsdoc.configs['flat/recommended'].rules,
 		},
 	},
-	// VUE
+
+	...tsESlint.configs.recommended,
 	{
-		files: ['**/*.vue'],
-		ignores: ['**/dist/**'],
+		name: 'TS',
+		files: ['**/*.ts'],
+		plugins: {
+			jsdoc,
+		},
 		languageOptions: {
-			ecmaVersion: 'latest',
-			parser: vueParser, // <template>
+			parser: tsESlint.parser,
+		},
+		rules: {
+			...jsdoc.configs['flat/recommended-typescript'].rules,
+		},
+	},
+
+	...pluginVue.configs['flat/recommended'],
+	{
+		name: 'Vue',
+		files: ['**/*.vue'],
+		languageOptions: {
 			parserOptions: {
-				parser: babelParser, // <script>
+				parser: '@typescript-eslint/parser',
 			},
 		},
-		plugins: { vue },
-		rules: {
-			...vueConfig.rules,
-		},
 	},
-	// Prettier options (must be last!)
-	{
-		files: ['**/*.js'],
-		ignores: ['**/dist/**'],
-		plugins: { prettier },
-		rules: {
-			...prettierConfig.rules,
-			'prettier/prettier': 'error',
-			'arrow-body-style': 'off',
-			'prefer-arrow-callback': 'off',
-		},
-	},
+
+	eslintPluginPrettierRecommended,
 ];

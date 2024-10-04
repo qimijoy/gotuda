@@ -1,12 +1,13 @@
 # gotuda
 
+## Description
+
 An application for finding interesting places near metro stations in Moscow. Click on the button and get a random station where to go.
 
 ## Project Setup
 
 ```sh
 npm ci
-npx husky install
 ```
 
 ### Compile and Hot-Reload for Development

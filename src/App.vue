@@ -3,14 +3,14 @@
 </template>
 
 <script setup>
-import { computed } from 'vue';
-import { useRoute } from 'vue-router';
+	import { computed } from 'vue';
+	import { useRoute } from 'vue-router';
 
-import layouts from '@/layouts';
+	import layouts from '@/layouts';
 
-// STATES
-const route = useRoute();
+	// STATES
+	const route = useRoute();
 
-// COMPUTED
-const layout = computed(() => layouts[route.meta.layout]);
+	// COMPUTED
+	const layout = computed(() => layouts[route.meta.layout]);
 </script>

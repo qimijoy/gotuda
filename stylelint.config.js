@@ -1,7 +1,9 @@
-const primaryRules = require('@qimijoy/stylelint-config/configs/primary');
+import primaryRules from '@qimijoy/stylelint-config/configs/primary.js';
 
-module.exports = {
+export default {
 	ignoreFiles: ['**/node_modules/**', '**/dist/**'],
+
+	extends: ['stylelint-config-standard', 'stylelint-config-standard-less'],
 
 	plugins: [
 		'stylelint-prettier',
@@ -17,6 +19,8 @@ module.exports = {
 	reportNeedlessDisables: true,
 	configurationComment: 'stylelint', // --> /* stylelint-disable */
 	ignoreDisables: true,
+	allowEmptyInput: true,
+	cache: true,
 
 	overrides: [
 		{

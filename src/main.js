@@ -1,18 +1,21 @@
-import { createApp } from 'vue';
-import App from '@/App.vue';
+// STYLES
+import '@/assets/styles/main.less';
+import '@qimijoy/vue-storybook/dist/style.css';
+
+// ROUTER
 import router from '@/router';
 
-// Pinia
+// PINIA
 import { createPinia } from 'pinia';
-const Pinia = createPinia();
+const pinia = createPinia();
 
-// Styles
-import '@/assets/styles/index.less';
-import '@qimijoy/vue-storybook/dist/style.css';
+// APPLICATION
+import { createApp } from 'vue';
+import App from '@/App.vue';
 
 const app = createApp(App);
 
 app.use(router);
-app.use(Pinia);
+app.use(pinia);
 
 app.mount('#gotuda');

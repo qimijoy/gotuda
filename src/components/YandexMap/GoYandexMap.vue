@@ -23,31 +23,31 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted, shallowRef } from 'vue';
-import { useMainStore } from '@/stores/MainStore';
+	import { ref, computed, onMounted } from 'vue';
+	import { useMainStore } from '@/stores/MainStore';
 
-import { YandexMap, YandexMarker, YandexClusterer } from 'vue-yandex-maps';
-import { coordinates, detailedControls, settings, YandexMapPreset2LineId } from './settings';
+	// import { YandexMap, YandexMarker, YandexClusterer } from "vue-yandex-maps";
+	import { YandexMap } from 'vue-yandex-maps';
+	import { coordinates, detailedControls, settings, YandexMapPreset2LineId } from './settings';
 
-const mainStore = useMainStore();
+	const mainStore = useMainStore();
 
-// STATES
-const showMap = ref(false);
-const map = shallowRef(null);
-const stations = computed(() => mainStore.stations);
+	// STATES
+	const showMap = ref(false);
+	const stations = computed(() => mainStore.stations);
 
-onMounted(() => {
-	showMap.value = true;
-});
+	onMounted(() => {
+		showMap.value = true;
+	});
 
-// FUNCTIONS
-const getPreset = (lineid) => {
-	return YandexMapPreset2LineId.find((item) => item.lineId === lineid)?.YandexMapPresetName;
-};
+	// FUNCTIONS
+	const getPreset = (lineid) => {
+		return YandexMapPreset2LineId.find((item) => item.lineId === lineid)?.YandexMapPresetName;
+	};
 </script>
 
 <style scoped lang="less">
-.yandex-container {
-	height: 500px;
-}
+	.yandex-container {
+		height: 500px;
+	}
 </style>
