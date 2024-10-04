@@ -22,9 +22,9 @@
 	<div v-else></div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 	import { ref, computed, onMounted } from 'vue';
-	import { useMainStore } from '@/stores/MainStore';
+	import { useMainStore } from '@/stores/MainStore/index.js';
 
 	// import { YandexMap, YandexMarker, YandexClusterer } from "vue-yandex-maps";
 	import { YandexMap } from 'vue-yandex-maps';

@@ -25,89 +25,89 @@
 	</main>
 </template>
 
-<script setup>
-import { ref, computed } from 'vue';
-import { useMainStore } from '@/stores/MainStore';
+<script setup lang="ts">
+	import { ref, computed } from 'vue';
+	import { useMainStore } from '@/stores/MainStore/index.js';
 
-import GoHeaderH1 from '@/components/GoHeaderH1.vue';
-import { QButton } from '@qimijoy/vue-storybook';
+	import GoHeaderH1 from '@/components/GoHeaderH1.vue';
+	import { QButton } from '@qimijoy/vue-storybook';
 
-import { randomNumber } from '@/utils/functions';
+	import { randomNumber } from '@/utils/functions';
 
-const mainStore = useMainStore();
+	const mainStore = useMainStore();
 
-// STATES
-const randomStation = ref('');
+	// STATES
+	const randomStation = ref('');
 
-// COMPUTED
-const stations = computed(() => mainStore.stations);
+	// COMPUTED
+	const stations = computed(() => mainStore.stations);
 
-// FUNCTIONS
-const rollStation = (stations) => {
-	const length = stations.length;
-	if (length === 0) {
-		return null;
-	} else {
-		randomStation.value = stations[randomNumber(0, length - 1)];
-	}
-};
+	// FUNCTIONS
+	const rollStation = (stations) => {
+		const length = stations.length;
+		if (length === 0) {
+			return null;
+		} else {
+			randomStation.value = stations[randomNumber(0, length - 1)];
+		}
+	};
 </script>
 
 <style lang="less" scoped>
-@import '@/assets/styles/_breakpoints';
+	@import '@/assets/styles/_breakpoints';
 
-.main {
-	&__action {
-		display: grid;
-		grid-template-columns: 1fr;
-		gap: 15px 20px;
+	.main {
+		&__action {
+			display: grid;
+			grid-template-columns: 1fr;
+			gap: 15px 20px;
 
-		@media @medium {
-			grid-template-columns: 2fr 1fr;
+			@media @medium {
+				grid-template-columns: 2fr 1fr;
+			}
+		}
+
+		&__instruction {
+			list-style-type: none;
+			counter-reset: num;
+
+			margin-left: 20px;
+		}
+
+		&__instruction-item {
+			position: relative;
+
+			margin-bottom: 10px;
+
+			&:last-child {
+				left: -20px;
+			}
+
+			&:not(:last-child):before {
+				content: counter(num) '.';
+				counter-increment: num;
+
+				position: absolute;
+				left: -20px;
+			}
+		}
+
+		&__button {
+			width: 100%;
+			margin-top: 20px;
 		}
 	}
 
-	&__instruction {
-		list-style-type: none;
-		counter-reset: num;
-
-		margin-left: 20px;
-	}
-
-	&__instruction-item {
-		position: relative;
-
-		margin-bottom: 10px;
-
-		&:last-child {
-			left: -20px;
+	.random-station {
+		&__press-the-button {
+			font-size: 0.8rem;
+			font-style: italic;
 		}
 
-		&:not(:last-child):before {
-			content: counter(num) '.';
-			counter-increment: num;
+		&__choice {
+			padding: 4px;
 
-			position: absolute;
-			left: -20px;
+			border-radius: 5px;
 		}
 	}
-
-	&__button {
-		width: 100%;
-		margin-top: 20px;
-	}
-}
-
-.random-station {
-	&__press-the-button {
-		font-size: 0.8rem;
-		font-style: italic;
-	}
-
-	&__choice {
-		padding: 4px;
-
-		border-radius: 5px;
-	}
-}
 </style>

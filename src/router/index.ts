@@ -5,8 +5,10 @@ import StationsView from '@/views/StationsView.vue';
 
 import { useMainStore } from '@/stores/MainStore';
 
+import { basePath } from '@/constants/paths.constant';
+
 const router = createRouter({
-	history: createWebHistory(process.env.NODE_ENV === 'production' ? '/gotuda/' : '/'),
+	history: createWebHistory(basePath),
 	routes: [
 		{
 			path: '/auth',

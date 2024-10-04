@@ -18,116 +18,116 @@
 	</div>
 </template>
 
-<script setup>
-import { ref, computed, watch, useSlots } from 'vue';
+<script setup lang="ts">
+	import { ref, computed, watch, useSlots } from 'vue';
 
-import SpoilerArrowIcon from '@/assets/images/icons/SpoilerArrowIcon.svg';
+	import SpoilerArrowIcon from '@/assets/images/icons/SpoilerArrowIcon.svg';
 
-// PROPS
-const props = defineProps({
-	data: {
-		type: Object,
-		default: () => {},
-		validator: (value) => value.id !== undefined,
-	},
-});
-
-// EMITS
-const emit = defineEmits({
-	toggle: (state) => {
-		return state.id !== undefined && state.value !== undefined;
-	},
-});
-
-const slots = useSlots();
-
-// STATES
-const isOpen = ref(false);
-
-// COMPUTED
-const isOpenComputed = computed(() => props.isOpen);
-const isSlotSummary = computed(() => Boolean(slots.summary));
-const isSlotContent = computed(() => Boolean(slots.content));
-
-// FUNCTIONS
-const toggleSpoiler = () => {
-	isOpen.value = !isOpen.value;
-
-	emit('toggle', {
-		id: props.data.id,
-		value: isOpen.value,
+	// PROPS
+	const props = defineProps({
+		data: {
+			type: Object,
+			default: () => {},
+			validator: (value) => value.id !== undefined,
+		},
 	});
-};
 
-// WATCHERS
-watch(isOpenComputed, (newValue) => {
-	isOpen.value = newValue;
-});
+	// EMITS
+	const emit = defineEmits({
+		toggle: (state) => {
+			return state.id !== undefined && state.value !== undefined;
+		},
+	});
+
+	const slots = useSlots();
+
+	// STATES
+	const isOpen = ref(false);
+
+	// COMPUTED
+	const isOpenComputed = computed(() => props.isOpen);
+	const isSlotSummary = computed(() => Boolean(slots.summary));
+	const isSlotContent = computed(() => Boolean(slots.content));
+
+	// FUNCTIONS
+	const toggleSpoiler = () => {
+		isOpen.value = !isOpen.value;
+
+		emit('toggle', {
+			id: props.data.id,
+			value: isOpen.value,
+		});
+	};
+
+	// WATCHERS
+	watch(isOpenComputed, (newValue) => {
+		isOpen.value = newValue;
+	});
 </script>
 
 <style scoped lang="less">
-@import '@/assets/styles/_palette';
+	@import '@/assets/styles/_palette';
 
-.spoiler {
-	&__summary {
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-		border-width: 2px;
-		border-style: solid;
-		border-color: @primary-hover;
+	.spoiler {
+		&__summary {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			border-width: 2px;
+			border-style: solid;
+			border-color: @primary-hover;
 
-		padding: 6px 6px 6px 20px;
+			padding: 6px 6px 6px 20px;
 
-		border-radius: 6px;
+			border-radius: 6px;
 
-		cursor: pointer;
+			cursor: pointer;
 
-		transition: border-color 0.5s;
+			transition: border-color 0.5s;
 
-		&:hover:not(&_open) {
-			border-color: @primary;
+			&:hover:not(&_open) {
+				border-color: @primary;
+			}
+
+			&_open {
+				border-color: @primary-active;
+			}
 		}
 
-		&_open {
-			border-color: @primary-active;
+		&__summary-icon {
+			width: 30px;
+			height: 30px;
+
+			transition: transform 0.5s;
+
+			&_open {
+				transform: rotate(180deg);
+			}
+		}
+
+		&__summary-svg {
+			margin-left: 4px;
+
+			transition: stroke 0.5s;
+			stroke: @primary-hover;
+
+			&:hover:not(&_open) {
+				stroke: @primary;
+			}
+
+			&_open {
+				stroke: @primary-active;
+			}
+		}
+
+		&__content {
+			height: 0;
+			overflow-y: hidden;
+
+			&_open {
+				height: auto;
+				padding: 10px;
+			}
 		}
 	}
-
-	&__summary-icon {
-		width: 30px;
-		height: 30px;
-
-		transition: transform 0.5s;
-
-		&_open {
-			transform: rotate(180deg);
-		}
-	}
-
-	&__summary-svg {
-		margin-left: 4px;
-
-		transition: stroke 0.5s;
-		stroke: @primary-hover;
-
-		&:hover:not(&_open) {
-			stroke: @primary;
-		}
-
-		&_open {
-			stroke: @primary-active;
-		}
-	}
-
-	&__content {
-		height: 0;
-		overflow-y: hidden;
-
-		&_open {
-			height: auto;
-			padding: 10px;
-		}
-	}
-}
 </style>

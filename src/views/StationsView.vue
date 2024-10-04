@@ -22,64 +22,64 @@
 	</main>
 </template>
 
-<script setup>
-import { computed } from 'vue';
-import { useMainStore } from '@/stores/MainStore';
+<script setup lang="ts">
+	import { computed } from 'vue';
+	import { useMainStore } from '@/stores/MainStore/index.js';
 
-import GoHeaderH1 from '@/components/GoHeaderH1.vue';
-import GoSpoiler from '@/components/GoSpoiler.vue';
-import GoYandexMap from '@/components/YandexMap/GoYandexMap.vue';
+	import GoHeaderH1 from '@/components/GoHeaderH1.vue';
+	import GoSpoiler from '@/components/GoSpoiler.vue';
+	import GoYandexMap from '@/components/YandexMap/GoYandexMap.vue';
 
-const mainStore = useMainStore();
+	const mainStore = useMainStore();
 
-// COMPUTED
-const lines = computed(() => mainStore.linesRaw);
+	// COMPUTED
+	const lines = computed(() => mainStore.linesRaw);
 </script>
 
 <style lang="less" scoped>
-@import '@/assets/styles/_breakpoints';
+	@import '@/assets/styles/_breakpoints';
 
-.lines {
-	display: grid;
-	grid-template-columns: 1fr;
-	gap: 15px 20px;
+	.lines {
+		display: grid;
+		grid-template-columns: 1fr;
+		gap: 15px 20px;
 
-	margin-bottom: 30px;
+		margin-bottom: 30px;
 
-	@media @small {
-		grid-template-columns: 1fr 1fr;
+		@media @small {
+			grid-template-columns: 1fr 1fr;
+		}
+
+		@media @large {
+			grid-template-columns: 1fr 1fr 1fr;
+		}
 	}
 
-	@media @large {
-		grid-template-columns: 1fr 1fr 1fr;
+	.line {
+		&__info {
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+		}
+
+		&__info-color {
+			width: 15px;
+			height: 15px;
+			margin-right: 10px;
+
+			border-radius: 6px;
+		}
 	}
-}
 
-.line {
-	&__info {
-		display: flex;
-		flex-direction: row;
-		align-items: center;
+	.stations-map {
+		margin-bottom: 20px;
 	}
 
-	&__info-color {
-		width: 15px;
-		height: 15px;
-		margin-right: 10px;
-
-		border-radius: 6px;
+	.stations {
+		list-style: none;
 	}
-}
 
-.stations-map {
-	margin-bottom: 20px;
-}
-
-.stations {
-	list-style: none;
-}
-
-.station {
-	margin-bottom: 4px;
-}
+	.station {
+		margin-bottom: 4px;
+	}
 </style>

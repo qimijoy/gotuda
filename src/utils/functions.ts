@@ -1,4 +1,4 @@
-export const randomNumber = (min, max) => {
+export const randomNumber = (min: number, max: number) => {
 	const minCeiled = Math.ceil(min);
 	const maxFloored = Math.floor(max);
 

@@ -13,45 +13,45 @@
 	</header>
 </template>
 
-<script setup>
-import { computed } from 'vue';
-import { useMainStore } from '@/stores/MainStore';
+<script setup lang="ts">
+	import { computed } from 'vue';
+	import { useMainStore } from '@/stores/MainStore/index.js';
 
-import GoRouterLink from '@/components/GoRouterLink.vue';
+	import GoRouterLink from '@/components/GoRouterLink.vue';
 
-const mainStore = useMainStore();
+	const mainStore = useMainStore();
 
-// COMPUTED
-const links = computed(() => [
-	{ name: 'Го Туда', href: '/' },
-	{ name: 'Станции', href: '/stations' },
-]);
-const isStationsLoading = computed(() => mainStore.isStationsLoading);
-const currentRoute = computed(() => mainStore.currentRoute);
+	// COMPUTED
+	const links = computed(() => [
+		{ name: 'Го Туда', href: '/' },
+		{ name: 'Станции', href: '/stations' },
+	]);
+	const isStationsLoading = computed(() => mainStore.isStationsLoading);
+	const currentRoute = computed(() => mainStore.currentRoute);
 </script>
 
 <style lang="less" scoped>
-@import '@/assets/styles/_palette';
-@import '@/assets/styles/_sizes';
-@import '@/assets/styles/_mixins';
+	@import '@/assets/styles/_palette';
+	@import '@/assets/styles/_sizes';
+	@import '@/assets/styles/_mixins';
 
-.header {
-	display: flex;
-
-	width: 100%;
-
-	height: @header-height;
-	min-height: @header-height;
-	padding: 0 20px;
-
-	background-color: @white;
-	align-items: center;
-	box-shadow: 0 0 10px rgb(0 0 0 / 0.07);
-
-	&__nav {
+	.header {
 		display: flex;
+
+		width: 100%;
+
+		height: @header-height;
+		min-height: @header-height;
+		padding: 0 20px;
+
+		background-color: @white;
 		align-items: center;
-		justify-content: space-between;
+		box-shadow: 0 0 10px rgb(0 0 0 / 0.07);
+
+		&__nav {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+		}
 	}
-}
 </style>
