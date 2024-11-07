@@ -8,8 +8,6 @@ export const useMainStore = defineStore('mainStore', () => {
 	const route = useRoute();
 
 	// STATES
-	const isAuthorized = ref(true); // Пока считаем, что всегда авторизованы
-
 	const isStationsLoading = ref(false);
 	const linesRaw = ref([]);
 
@@ -55,7 +53,6 @@ export const useMainStore = defineStore('mainStore', () => {
 	};
 
 	return {
-		isAuthorized,
 		isStationsLoading,
 		linesRaw,
 		lines,
