@@ -7,7 +7,7 @@
 		<div v-else class="gotuda__content">
 			<GoRandomStation />
 
-			<GoStationsList />
+			<GoStationsList class="gotuda__stations-list" />
 		</div>
 	</div>
 </template>
@@ -21,7 +21,6 @@
 
 	// STORE
 	import { useMainStore } from '@/stores/MainStore';
-
 	const mainStore = useMainStore();
 
 	// COMPUTED
@@ -40,21 +39,26 @@
 
 		max-width: 1024px;
 		height: 100%;
-		margin: 0 auto;
+		margin: auto;
+		padding: 24px;
+	}
 
-		&__loader {
-			flex-grow: 1;
+	.gotuda__loader {
+		flex-grow: 1;
 
-			display: flex;
-			align-items: center;
-			justify-content: center;
-		}
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
 
-		&__content {
-			display: flex;
-			flex-direction: row;
+	.gotuda__content {
+		display: flex;
+		flex-direction: column;
 
-			margin-top: 1px;
-		}
+		margin-top: 1px;
+	}
+
+	.gotuda__stations-list {
+		margin-top: 24px;
 	}
 </style>

@@ -2,24 +2,20 @@
 	<div class="spoiler">
 		<div class="spoiler__summary" :class="{ spoiler__summary_open: isOpen }" @click="toggleSpoiler">
 			<div class="spoiler__summary-text">
-				<template v-if="!isSlotSummary">{{ data.summary }}</template>
-
-				<slot v-else name="summary" />
+				<slot name="summary" />
 			</div>
 			<div :class="['spoiler__summary-icon', { 'spoiler__summary-icon_open': isOpen }]">
 				<SpoilerArrowIcon :class="['spoiler__summary-svg', { 'spoiler__summary-svg_open': isOpen }]" />
 			</div>
 		</div>
 		<div :class="['spoiler__content', { spoiler__content_open: isOpen }]">
-			<template v-if="!isSlotContent">{{ data.content }}</template>
-
-			<slot v-else name="content" />
+			<slot name="content" />
 		</div>
 	</div>
 </template>
 
 <script setup lang="ts">
-	import { ref, computed, watch, useSlots } from 'vue';
+	import { ref } from 'vue';
 
 	import SpoilerArrowIcon from '@/assets/images/icons/SpoilerArrowIcon.svg';
 
@@ -39,15 +35,8 @@
 		},
 	});
 
-	const slots = useSlots();
-
 	// STATES
 	const isOpen = ref(false);
-
-	// COMPUTED
-	const isOpenComputed = computed(() => props.isOpen);
-	const isSlotSummary = computed(() => Boolean(slots.summary));
-	const isSlotContent = computed(() => Boolean(slots.content));
 
 	// FUNCTIONS
 	const toggleSpoiler = () => {
@@ -58,11 +47,6 @@
 			value: isOpen.value,
 		});
 	};
-
-	// WATCHERS
-	watch(isOpenComputed, (newValue) => {
-		isOpen.value = newValue;
-	});
 </script>
 
 <style scoped lang="less">

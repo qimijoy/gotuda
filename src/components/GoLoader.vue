@@ -61,6 +61,7 @@
 			transform: rotate(360deg);
 		}
 	}
+
 	@keyframes rotationBack {
 		0% {
 			transform: rotate(0deg);

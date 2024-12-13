@@ -24,11 +24,12 @@
 
 <script setup lang="ts">
 	import { computed } from 'vue';
-	import { useMainStore } from '@/stores/MainStore';
 
 	import GoSpoiler from '@/components/GoSpoiler.vue';
 	import GoYandexMap from '@/components/YandexMap/GoYandexMap.vue';
 
+	// STORE
+	import { useMainStore } from '@/stores/MainStore';
 	const mainStore = useMainStore();
 
 	// COMPUTED
@@ -54,20 +55,18 @@
 		}
 	}
 
-	.line {
-		&__info {
-			display: flex;
-			flex-direction: row;
-			align-items: center;
-		}
+	.line__info {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+	}
 
-		&__info-color {
-			width: 15px;
-			height: 15px;
-			margin-right: 10px;
+	.line__info-color {
+		width: 15px;
+		height: 15px;
+		margin-right: 10px;
 
-			border-radius: 6px;
-		}
+		border-radius: 6px;
 	}
 
 	.stations-map {

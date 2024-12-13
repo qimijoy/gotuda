@@ -1,28 +1,26 @@
 <template>
-	<main>
-		<h1>Принцип работы</h1>
+	<div class="main">
+		<h1 class="main__header">Принцип работы</h1>
 
-		<div class="main">
-			<ol class="main__instruction">
-				<li class="main__instruction-item">Тыкаешь на кнопку и получаешь рандомную станцию метро Москвы.</li>
-				<li class="main__instruction-item">Едешь туда тусить и открывать новые места.</li>
-				<li class="main__instruction-item">Кайфуешь</li>
-				<li class="main__instruction-item">
-					Ты сегодня покатишь на станцию
+		<ol class="main__instruction">
+			<li class="main__instruction-item">Тыкаешь на кнопку и получаешь рандомную станцию метро Москвы.</li>
+			<li class="main__instruction-item">Едешь туда тусить и открывать новые места.</li>
+			<li class="main__instruction-item">Кайфуешь</li>
+			<li class="main__instruction-item">
+				Ты сегодня покатишь на станцию
 
-					<span class="random-station">
-						<span v-if="randomStation === ''" class="random-station__press-the-button">...нажмите на кнопку...</span>
-						<span v-else class="random-station__choice" :style="{ backgroundColor: randomStation.lineColor }">
-							{{ randomStation.name }}
-						</span>
+				<span class="random-station">
+					<span v-if="randomStation === ''" class="random-station__press-the-button">...нажмите на кнопку...</span>
+					<span v-else class="random-station__choice" :style="{ backgroundColor: randomStation.lineColor }">
+						{{ randomStation.name }}
 					</span>
-				</li>
-			</ol>
-			<div>
-				<QButton class="main__button" @click="rollStation(stations)">Го туда</QButton>
-			</div>
+				</span>
+			</li>
+		</ol>
+		<div>
+			<QButton class="main__button" @click="rollStation(stations)">Го туда</QButton>
 		</div>
-	</main>
+	</div>
 </template>
 
 <script setup lang="ts">
@@ -57,46 +55,38 @@
 	@import '@/assets/styles/_sizes';
 	@import '@/assets/styles/_breakpoints';
 
-	.main {
-		&__action {
-			display: grid;
-			grid-template-columns: 1fr;
-			gap: 15px 20px;
+	.main__header {
+		margin-bottom: 12px;
+	}
 
-			@media @medium {
-				grid-template-columns: 2fr 1fr;
-			}
+	.main__instruction {
+		list-style-type: none;
+		counter-reset: num;
+
+		margin-left: 20px;
+	}
+
+	.main__instruction-item {
+		position: relative;
+
+		margin-bottom: 10px;
+
+		&:last-child {
+			left: -20px;
 		}
 
-		&__instruction {
-			list-style-type: none;
-			counter-reset: num;
+		&:not(:last-child):before {
+			content: counter(num) '.';
+			counter-increment: num;
 
-			margin-left: 20px;
+			position: absolute;
+			left: -20px;
 		}
+	}
 
-		&__instruction-item {
-			position: relative;
-
-			margin-bottom: 10px;
-
-			&:last-child {
-				left: -20px;
-			}
-
-			&:not(:last-child):before {
-				content: counter(num) '.';
-				counter-increment: num;
-
-				position: absolute;
-				left: -20px;
-			}
-		}
-
-		&__button {
-			width: 100%;
-			margin-top: 20px;
-		}
+	.main__button {
+		width: 120px;
+		margin-top: 12px;
 	}
 
 	.random-station {
