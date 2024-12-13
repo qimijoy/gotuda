@@ -1,6 +1,6 @@
 <template>
 	<main>
-		<GoHeaderH1>Принцип работы</GoHeaderH1>
+		<h1>Принцип работы</h1>
 
 		<div class="main">
 			<ol class="main__instruction">
@@ -27,13 +27,13 @@
 
 <script setup lang="ts">
 	import { ref, computed } from 'vue';
-	import { useMainStore } from '@/stores/MainStore/index.js';
 
-	import GoHeaderH1 from '@/components/GoHeaderH1.vue';
 	import { QButton } from '@qimijoy/vue-storybook';
 
 	import { randomNumber } from '@/utils/functions';
 
+	// STORE
+	import { useMainStore } from '@/stores/MainStore';
 	const mainStore = useMainStore();
 
 	// STATES
@@ -53,7 +53,8 @@
 	};
 </script>
 
-<style lang="less" scoped>
+<style scoped lang="less">
+	@import '@/assets/styles/_sizes';
 	@import '@/assets/styles/_breakpoints';
 
 	.main {
