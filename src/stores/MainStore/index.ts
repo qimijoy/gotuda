@@ -3,33 +3,33 @@ import { ref, computed } from 'vue';
 
 import { getStationsAPI } from '@/api/stations';
 
+import type { Line, Station, StationNormalized } from '@/types/stations';
+
 export const useMainStore = defineStore('mainStore', () => {
 	// STATES
 	const isStationsLoading = ref(false);
-	const linesRaw = ref([]);
+	const lines = ref<Line[]>([]);
 
 	// COMPUTED
-	const lines = computed(() =>
-		linesRaw.value.map(({ id, hex_color, name }) => ({
-			id,
-			name,
-			color: hex_color,
-		})),
-	);
-
 	const stations = computed(() => {
-		return linesRaw.value.reduce((acc, lineRaw) => {
-			const stationsFromLine = lineRaw.stations.map(({ id, name, lat, lng, line }) => ({
-				id,
-				name,
-				latitude: lat,
-				longitude: lng,
-				line: line.id,
-				lineColor: `#${line.hex_color}`,
-			}));
+		let result: StationNormalized[] = [];
 
-			return [...acc, ...stationsFromLine];
-		}, []);
+		lines.value.forEach((line) => {
+			const stationsNormalized: StationNormalized[] = [
+				...line.stations.map((station: Station) => ({
+					id: station.id,
+					name: station.name,
+					latitude: station.lat,
+					longitude: station.lng,
+					line: line.id,
+					lineColor: `#${line.hex_color}`,
+				})),
+			];
+
+			result = [...result, ...stationsNormalized];
+		});
+
+		return result;
 	});
 
 	// ACTIONS
@@ -39,7 +39,7 @@ export const useMainStore = defineStore('mainStore', () => {
 
 			const { data: response } = await getStationsAPI();
 
-			linesRaw.value = response ? response.lines : [];
+			lines.value = response ? response.lines : [];
 		} catch (error) {
 			console.error(error);
 		} finally {
@@ -49,7 +49,6 @@ export const useMainStore = defineStore('mainStore', () => {
 
 	return {
 		isStationsLoading,
-		linesRaw,
 		lines,
 		stations,
 		getStations,

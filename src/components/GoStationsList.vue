@@ -33,7 +33,7 @@
 	const mainStore = useMainStore();
 
 	// COMPUTED
-	const lines = computed(() => mainStore.linesRaw);
+	const lines = computed(() => mainStore.lines);
 </script>
 
 <style lang="less" scoped>
