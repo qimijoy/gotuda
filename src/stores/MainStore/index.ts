@@ -1,17 +1,12 @@
 import { defineStore } from 'pinia';
 import { ref, computed } from 'vue';
-import { useRoute } from 'vue-router';
 
 import { getStationsAPI } from '@/api/stations';
 
 export const useMainStore = defineStore('mainStore', () => {
-	const route = useRoute();
-
 	// STATES
 	const isStationsLoading = ref(false);
 	const linesRaw = ref([]);
-
-	const currentRoute = ref(route);
 
 	// COMPUTED
 	const lines = computed(() =>
@@ -57,7 +52,6 @@ export const useMainStore = defineStore('mainStore', () => {
 		linesRaw,
 		lines,
 		stations,
-		currentRoute,
 		getStations,
 	};
 });

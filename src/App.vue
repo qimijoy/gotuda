@@ -1,37 +1,39 @@
 <template>
 	<div class="gotuda">
-		<GoHeader />
-
 		<div v-if="isStationsLoading" class="gotuda__loader">
 			<GoLoader />
 		</div>
 
 		<div v-else class="gotuda__content">
-			<RouterView class="gotuda__view" />
+			<GoRandomStation />
+
+			<GoStationsList />
 		</div>
 	</div>
 </template>
 
 <script setup lang="ts">
 	import { computed, onMounted } from 'vue';
-	import { useMainStore } from '@/stores/MainStore';
 
-	import GoHeader from '@/components/GoHeader.vue';
 	import GoLoader from '@/components/GoLoader.vue';
+	import GoRandomStation from '@/components/GoRandomStation.vue';
+	import GoStationsList from '@/components/GoStationsList.vue';
+
+	// STORE
+	import { useMainStore } from '@/stores/MainStore';
 
 	const mainStore = useMainStore();
 
 	// COMPUTED
 	const isStationsLoading = computed(() => mainStore.isStationsLoading);
 
+	// HOOKS
 	onMounted(() => {
 		mainStore.getStations();
 	});
 </script>
 
 <style lang="less" scoped>
-	@import '@/assets/styles/_sizes';
-
 	.gotuda {
 		display: flex;
 		flex-direction: column;
@@ -53,11 +55,6 @@
 			flex-direction: row;
 
 			margin-top: 1px;
-		}
-
-		&__view {
-			width: 100%;
-			padding: 20px 30px;
 		}
 	}
 </style>

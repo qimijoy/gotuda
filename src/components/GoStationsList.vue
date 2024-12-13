@@ -1,6 +1,6 @@
 <template>
 	<main>
-		<GoHeaderH1>Список станций</GoHeaderH1>
+		<h1>Список станций</h1>
 
 		<GoYandexMap class="stations-map" />
 
@@ -24,9 +24,8 @@
 
 <script setup lang="ts">
 	import { computed } from 'vue';
-	import { useMainStore } from '@/stores/MainStore/index.js';
+	import { useMainStore } from '@/stores/MainStore';
 
-	import GoHeaderH1 from '@/components/GoHeaderH1.vue';
 	import GoSpoiler from '@/components/GoSpoiler.vue';
 	import GoYandexMap from '@/components/YandexMap/GoYandexMap.vue';
 
